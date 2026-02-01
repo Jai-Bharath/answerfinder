@@ -1,148 +1,138 @@
-# AnswerFinder - Intelligent Q&A Lookup Chrome Extension (v2.0)
+<div align="center">
 
-**Production-grade offline answer engine with intelligent multi-tier matching for Q&A pairs. Now with Sidebar UI and JSON Support!**
+<img src="assets/logo.png" alt="AnswerFinder Logo" width="128" height="128" />
 
----
+# AnswerFinder
+### Intelligent Offline Q&A Engine for Chrome
 
-## 🚀 What's New in v2.0
+[![Version](https://img.shields.io/badge/version-2.0-blue.svg?style=for-the-badge)](manifest.json)
+[![License](https://img.shields.io/badge/license-MIT-green.svg?style=for-the-badge)](LICENSE)
+[![Status](https://img.shields.io/badge/status-active-success.svg?style=for-the-badge)](STATUS.md)
+[![Platform](https://img.shields.io/badge/platform-Chrome%20Extension-orange.svg?style=for-the-badge)](https://developer.chrome.com/docs/extensions/mv3/)
 
-*   **JSON Support**: Upload structured `.json` files in addition to `.txt`.
-*   **Sidebar UI**: Answers now appear in a sleek, non-intrusive sidebar on the right instead of blocking content.
-*   **Self-Healing**: Automatically injects scripts into already-open tabs—no more "Refresh the page" errors!
-*   **Enhanced Matching**: Improved 4-tier reverse-lookup engine (Exact -> Keyword -> Fuzzy -> Partial).
+<p align="center">
+  <b>AnswerFinder</b> transforms your browser into a powerful, offline knowledge base. <br/>
+  Upload your own Q&A data and find answers instantly on any webpage without leaving the tab.
+</p>
 
----
-
-## Features
-
-✨ **Intelligent Matching**
-- **4-Tier Pipeline**: Exact → Keyword → Fuzzy → Partial match.
-- **Reverse Lookup**: Finds the question even if you select a substring (e.g., selecting just the middle part of a sentence).
-- **Sub-100ms Response**: optimized for instant lookup.
-- **Confidence Scoring**: Shows High/Medium/Low confidence badges.
-
-🎨 **Modern User Interface**
-- **Fixed Sidebar**: Slides in from the right, preventing content overlap.
-- **Live Statistics**: See your total loaded questions and cache hits in real-time.
-- **Dark Mode Friendly**: Clean, neutral styling.
-
-💾 **Robust Data Handling**
-- **Offline First**: All data stored locally in IndexedDB (Privacy focused!).
-- **Large Dataset Support**: Handles 10,000+ questions with ease.
-- **Two Formats**: Supports simple TXT lists and structured JSON.
+</div>
 
 ---
 
-## Installation
+## 🚀 Why AnswerFinder?
 
-1.  **Clone/Download** this repository.
-2.  Open Chrome and navigate to `chrome://extensions/`.
-3.  **Enable "Developer mode"** (toggle in top right).
-4.  Click **"Load unpacked"**.
+Most answer finders are slow, require an internet connection, or simply fail when the wording isn't exact. **AnswerFinder is different.**
+
+| Feature | Description |
+| :--- | :--- |
+| **⚡ Instant Search** | Sub-100ms response time using locally indexed data. **Zero latency.** |
+| **🧠 4-Tier Matching** | Uses **Exact**, **Keyword**, **Fuzzy**, and **Partial** logic to find answers even if the question is rephrased. |
+| **🔒 Offline & Private** | Your data never leaves your device. It lives in your browser's IndexedDB. |
+| **🎨 Modern UI** | Sleek sidebar interface that slides in without blocking your view. |
+| **🛠️ Extensive Support** | Supports both **TXT** and **JSON** formats with bulk upload capabilities (10,000+ items). |
+
+---
+
+## 📥 Installation
+
+1.  **Clone or Download** this repository.
+2.  Open Chrome and go to `chrome://extensions/`.
+3.  **Enable Developer Mode** (Top right toggle).
+4.  Click **Load Unpacked**.
 5.  Select the `answerfinder` folder.
-6.  The extension is now ready!
 
-> **Update Note**: If you are updating from v1.0, please remove the old extension and add it again, or click "Update" and restart Chrome to ensure the new Service Worker loads.
+> **Upgrade Note**: If upgrading from v1.x, please remove the old extension and re-add it to ensure the new Service Worker (v1.2+) loads correctly.
 
 ---
 
-## Usage
+## 🛠️ Usage Guide
 
-### 1. Upload Q&A Data
+### 1. Uploading Data
 
-1.  Click the **AnswerFinder icon** in the Chrome toolbar.
-2.  Click **"Choose File"**.
-3.  Select your data file (`.txt` or `.json`).
-4.  Wait for the green success message.
+AnswerFinder supports two formats. Click the extension icon and choose your file.
 
-#### Supported Data Formats
+#### Option A: Simple Text (`.txt`)
+Perfect for quick lists. Separate pairs with a blank line.
 
-**Option A: Simple Text (.txt)**
-Standard "Question then Answer" format separated by blank lines.
 ```text
-What is the capital of France?
-Paris
+What is the powerhouse of the cell?
+Mitochondria
 
-What is 2 + 2?
-4
+Who wrote Hamlet?
+William Shakespeare
 ```
 
-**Option B: JSON (.json) [NEW!]**
-Array of objects with `question` and `answer` fields.
+#### Option B: Structured JSON (`.json`)
+Ideal for complex data or exports.
+
 ```json
 [
   {
-    "question": "What is the capital of France?",
-    "answer": "Paris"
+    "question": "What is the speed of light?",
+    "answer": "299,792,458 m/s"
   },
   {
-    "question": "What is 2 + 2?",
-    "answer": "4"
+    "question": "Define Recursion.",
+    "answer": "See: Recursion."
   }
 ]
 ```
 
-### 2. Search for Answers
+### 2. Finding Answers
 
-1.  Highlight any text on a webpage (e.g., a quiz question).
+1.  **Highlight** any question text on a webpage.
 2.  **Right-Click** and select **"Search Answer"**.
-3.  The **Sidebar** will slide in from the right with the best match.
-
-### 3. Settings & Tools
-
-Open the extension popup to:
-*   **Export Data**: Save your current database as a JSON file.
-*   **Clear Data**: Wipe all questions from the extension.
-*   **Adjust Sensitivity**: Change the minimum confidence threshold.
-*   **Toggle Modes**: Enable/Disable Fuzzy or Partial matching.
+3.  The answer sidebar appears instantly! 🚀
 
 ---
 
-## Architecture (v2.0)
+## ⚙️ Configuration
 
-### Project Structure (Updated)
+Customize the engine to your needs via the Popup Menu:
 
-```
-answerfinder/
-├── manifest.json              # V3 Manifest (v1.2+)
-├── background/                # Service Worker
-│   ├── service-worker.js      # Main background script
-│   ├── msg-handler.js         # Message routing (Renamed from message-handler.js)
-│   └── state-manager.js
-├── content/                   # Content Scripts
-│   └── content-script-bundled.js # Bundled UI and Logic
-├── lib/                       # Core Logic
-│   ├── parsers/               # JSON & TXT Parsers
-│   ├── matching/              # 4-Tier Matching Engine
-│   └── storage/               # IndexedDB Manager
-└── popup/                     # UI Logic
-```
-
-### 4-Tier Matching Engine
-
-1.  **Exact Match**: Instant hash lookup (O(1)).
-2.  **Keyword Match**: TF-IDF style keyword intersection.
-3.  **Fuzzy Match**: Levenshtein/Jaro-Winkler distance for typos.
-4.  **Partial Match**: Substring detection (Finding user query inside a stored question).
+| Setting | Function | Recommended |
+| :--- | :--- | :--- |
+| **Fuzzy Matching** | Finds answers even with typos/spelling errors. | ✅ ON |
+| **Partial Matching** | Finds answers if you select a substring of the question. | ✅ ON |
+| **Confidence Threshold** | Filters out weak matches (0-100%). | **50%** |
 
 ---
 
-## Troubleshooting
+## 🧩 Architecture
 
-**"Upload is not working / Clicking button does nothing"**
-*   This usually means the extension needs a hard reload.
-*   **Fix**: Go to `chrome://extensions`, toggle the extension OFF and ON again, then refresh the extension page.
+AnswerFinder is built on a modern, event-driven architecture designed for speed.
 
-**"Searching..." spinner hangs forever**
-*   This means the background service worker is outdated.
-*   **Fix**: Click "Update" in `chrome://extensions` and restart the extension.
-
-**"No Match Found"**
-*   Ensure your question exists in the uploaded file.
-*   Try selecting a smaller part of the question.
-*   Check your confidence settings in the popup.
+*   **Core**: Vanilla JS (ES Modules) - No bloat.
+*   **Storage**: IndexedDB for persistent, large-scale storage.
+*   **Matching**: Custom implementation of Levenshtein, Jaro-Winkler, and TF-IDF algorithms.
+*   **UI**: Native Web Components style with Shadow DOM isolation (future) and CSS Grid.
 
 ---
 
-**Version**: 2.0.0
-**Last Updated**: February 2026
+## 🐞 Troubleshooting
+
+<details>
+<summary><b>Click "Upload" but nothing happens?</b></summary>
+<br>
+This is a known Chrome issue with file pickers closing the popup. We implemented a fix in v1.2! If it persists, toggle the extension OFF/ON in <code>chrome://extensions</code>.
+</details>
+
+<details>
+<summary><b>Infinite "Searching..." Spinner?</b></summary>
+<br>
+This occurs if the background script is outdated. Click "Update" in the extensions page and reload the extension.
+</details>
+
+<details>
+<summary><b>"No Match Found"?</b></summary>
+<br>
+Try lowering the confidence threshold to 30% or ensuring "Fuzzy Matching" is enabled.
+</details>
+
+---
+
+<div align="center">
+
+**Version 2.0.0** • **MIT License** • **Made with ❤️ for Efficiency**
+
+</div>
