@@ -1,39 +1,59 @@
 {
-    "manifest_version": 3,
-    "name": "PDF Answer Finder",
-    "version": "1.0.0",
-    "description": "Find answers from your converted PDF study materials instantly. Right-click any question to search your notes offline.",
-    "permissions": [
-        "contextMenus",
-        "storage",
-        "activeTab",
-        "scripting"
-    ],
-    "background": {
-        "service_worker": "background.js"
-    },
-    "content_scripts": [
-        {
-            "matches": [
-                "<all_urls>"
-            ],
-            "js": [
-                "content.js"
-            ],
-            "css": [
-                "content.css"
-            ],
-            "run_at": "document_end"
-        }
-    ],
-    "web_accessible_resources": [
-        {
-            "resources": [
-                "answers.txt"
-            ],
-            "matches": [
-                "<all_urls>"
-            ]
-        }
-    ]
+  "manifest_version": 3,
+  "name": "AnswerFinder - Intelligent Q&A Lookup",
+  "version": "1.2",
+  "description": "Production-grade offline answer engine with intelligent multi-tier matching for Q&A pairs",
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content/content-script-bundled.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "assets/icons/icon16.png",
+      "32": "assets/icons/icon32.png",
+      "48": "assets/icons/icon48.png",
+      "128": "assets/icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "32": "assets/icons/icon32.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "ui/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
 }

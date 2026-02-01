@@ -1,0 +1,758 @@
+[
+  {
+    "question": "What one word best describes what AI can do?",
+    "answer": "Predict"
+  },
+  {
+    "question": "Complete the sentence. performs tasks without human intervention and completes mundane and repetitive tasks for humans, while allows humans to make final decisions after analyzing data, reports, and other types of data.",
+    "answer": "AI, augmented intelligence"
+  },
+  {
+    "question": "Which of the following Narrow AI systems would you want to include when building the Broad AI system for a self-driving car?",
+    "answer": "Information from the global positioning system (GPS)"
+  },
+  {
+    "question": "Complete the sentence. Artificial intelligence (AI) refers to the ability of a machine to and .",
+    "answer": "learn patterns, make predictions"
+  },
+  {
+    "question": "Fill in the blank. systems are used to predict global weather, trace pandemics, and help businesses predict future trends?",
+    "answer": "Broad AI"
+  },
+  {
+    "question": "In which era did the advancements in fields ranging from cancer research to energy production show how its achievements impact people every day, and that it has exponentially increasing abilities?",
+    "answer": "The Era of AI"
+  },
+  {
+    "question": "In which era did machines help humans sort data into structures to reveal its secrets, that is, to reveal more insight than just simply counting to get a sum total?",
+    "answer": "The era of tabulation"
+  },
+  {
+    "question": "Which of the following is the correct order of the three eras of computing?",
+    "answer": "Tabulation, Programming, AI"
+  },
+  {
+    "question": "In which era did computers guide astronauts from Earth to the moon and advance to handle more than one kind of instruction?",
+    "answer": "The Era of Programming"
+  },
+  {
+    "question": "What were the main causes of the First Winter of AI? Select the two that apply.",
+    "answer": "Lack of funding, High expectations"
+  },
+  {
+    "question": "Which of the following is most likely to be unstructured data?",
+    "answer": "Social media posts"
+  },
+  {
+    "question": "Shelby writes a survey that includes the following question: \"Do you like chocolate (circle Yes or No), and why?\" Which of the following describes the data Shelby will collect?",
+    "answer": "Both structured data and unstructured data"
+  },
+  {
+    "question": "Approximately how much of the world's data today is unstructured?",
+    "answer": "80%"
+  },
+  {
+    "question": "Fill in the blank. Data that is not completely raw and contains elements such as tags and organizational metadata is known as .",
+    "answer": "semi-structured data"
+  },
+  {
+    "question": "If names and email addresses are organized using a spreadsheet software, like Google Sheets or Microsoft Excel, which of type of data is this?",
+    "answer": "Structured data"
+  },
+  {
+    "question": "Fill in the blank. Machine learning can analyze data more quickly than a programmable computer can.",
+    "answer": "Dark"
+  },
+  {
+    "question": "Which of the following is an example of a probabilistic calculation?",
+    "answer": "A 78% chance of being wrong"
+  },
+  {
+    "question": "Tomas is programming an app to help people find their way in his city. He programs every possible route from the university auditorium to the museum. Which of the following is Tomas likely using?",
+    "answer": "Programmable computing"
+  },
+  {
+    "question": "Why does machine learning find answers in unstructured data more quickly than a programmable computer?",
+    "answer": "Machine learning can search every combination of factors very quickly."
+  },
+  {
+    "question": "Complete the sentence. Machine learning is a type of AI with many advantages over programmable computers, including the distinguishing capability to and .",
+    "answer": "predict, learn"
+  },
+  {
+    "question": "You train Google Photos to identify people in photographs. As a result, Google Photos can recognize their faces. What kind of learning is this?",
+    "answer": "Supervised learning"
+  },
+  {
+    "question": "Fill in the blank. learning occurs when the algorithm is given unlabeled data.",
+    "answer": "Unsupervised"
+  },
+  {
+    "question": "YouTube and Netflix often recommend options to users. What kind of learning is used to generate these recommendations?",
+    "answer": "Unsupervised learning"
+  },
+  {
+    "question": "Which method of learning does an AI system use when it uses the process of trial and error?",
+    "answer": "Reinforcement learning"
+  },
+  {
+    "question": "Fill in the blank. All supervised learning algorithms need data.",
+    "answer": "Labeled"
+  },
+  {
+    "question": "Which of the following represents the idea that AI will move into all industries, from finance, to education, to healthcare, increasing productivity and enabling new opportunities?",
+    "answer": "AI everywhere"
+  },
+  {
+    "question": "What type of AI do services, such as Netflix, use to recommend offerings to users?",
+    "answer": "Narrow AI"
+  },
+  {
+    "question": "With the use of billions of sensors, what is the new idea that will help to improve the Earth's safety, sustainability, and security?",
+    "answer": "Instrumented planet"
+  },
+  {
+    "question": "Tesla cars are all connected and share what they learn when autonomously driving. This is an example of which of the following levels of AI?",
+    "answer": "Broad AI"
+  },
+  {
+    "question": "What do AI researchers call the type of systems likely to emerge by 2050 and beyond?",
+    "answer": "General AI"
+  },
+  {
+    "question": "Which of the following statements most accurately describes semi-structured data?",
+    "answer": "Data that combines features of both structured and unstructured data, using metadata for organization"
+  },
+  {
+    "question": "You are working on an AI system to help doctors treat patients. While describing your system to a group of doctors, you are asked the following question, \"How does machine learning enable decision-making in complex scenarios, such as medical treatment choices?\" Which of the following is the best response?",
+    "answer": "By providing probabilistic statements with confidence levels for different treatment options"
+  },
+  {
+    "question": "Which of the following methods of learning describes how an AI system learns using trial and error?",
+    "answer": "Reinforcement learning"
+  },
+  {
+    "question": "Which of the following describes how machine learning differs from classical systems in structuring unstructured data?",
+    "answer": "Machine learning offers probabilistic statements instead of binary decisions."
+  },
+  {
+    "question": "Which of the following types of data is categorized as qualitative data, and cannot be processed and analyzed by conventional data tools and methods?",
+    "answer": "Unstructured data"
+  },
+  {
+    "question": "In which of the following eras of computing did an IBM system beat a chess champion, a robot drive itself down a 131-mile desert trail, and IBM Watson beat two Jeopardy! grand champions?",
+    "answer": "Era of AI"
+  },
+  {
+    "question": "Which of the following acts on behalf of people in the physical world in a way that complements human abilities?",
+    "answer": "Augmented intelligence"
+  },
+  {
+    "question": "You're working for an employer who wants to learn from social media what customers say about her products and services. Which of the following is the best reason to support moving to an AI system?",
+    "answer": "Social media data contains a mix of structured and unstructured data."
+  },
+  {
+    "question": "Which of the following is a key attribute of an artificial intelligence system?",
+    "answer": "AI systems make predictions"
+  },
+  {
+    "question": "Which level of AI refers to machines that can perform any intellectual task that a human can?",
+    "answer": "General AI"
+  },
+  {
+    "question": "Which of the following is an example of structured data?",
+    "answer": "Flight schedules"
+  },
+  {
+    "question": "Which of the following types of data can be analyzed more quickly by machine learning than by a programmable computer?",
+    "answer": "Unstructured"
+  },
+  {
+    "question": "Which of the following explains why an AI trained with machine learning can rapidly map the best route between two points on a map?",
+    "answer": "It performs millions of tiny calculations quickly, trying different routes through trial and error."
+  },
+  {
+    "question": "Which of the following is a likely consequence of AI becoming more pervasive across industries?",
+    "answer": "Enhanced productivity and the creation of new opportunities"
+  },
+  {
+    "question": "Which of the following is the level of AI that is more versatile, can handle a wider range of related tasks, and is focused on integrating AI within specific business processes?",
+    "answer": "Broad AI"
+  },
+  {
+    "question": "Fill in the blank. A system that helps machines understand cultural knowledge, grammatical structures, and various language nuances is known as",
+    "answer": "Natural language processing"
+  },
+  {
+    "question": "What is the final step an AI debater system must take?",
+    "answer": "Respond to the opponent by listening to the opponent's arguments to then deliver a convincing rebuttal that refutes the opponent and further proves the case."
+  },
+  {
+    "question": "What term do AI researchers use to describe the collection of text and data they use to train a debater AI system?",
+    "answer": "Corpus"
+  },
+  {
+    "question": "Which of the following statements is correct about natural language processing (NLP)? Select all that apply.",
+    "answer": "Human language is complex, so machines require natural language processing systems to understand human language. IBM Project Debater was a major step forward in the field of natural language processing."
+  },
+  {
+    "question": "Which of the following functions can a cognitive AI system perform? Select all that apply.",
+    "answer": "Interact, Learn, understand, Reason"
+  },
+  {
+    "question": "What is sentiment analysis?",
+    "answer": "A method to measure the strength of an emotion by assessing data as positive, negative, or neutral"
+  },
+  {
+    "question": "Your friend says, \"I really love anchovies and flowers.\" How many relationships between entities can you find in this statement?",
+    "answer": "Two"
+  },
+  {
+    "question": "You're consulting for a store that wants to know how customers feel about a new product line. You propose an AI system that can study how people feel about these products based on their comments in social media. Which tokens are most important for the AI system's NLP to analyze?",
+    "answer": "Emotions and sentiment"
+  },
+  {
+    "question": "How does an AI system that is working with human language handle the classification problem?",
+    "answer": "It learns from many instances."
+  },
+  {
+    "question": "What type of problem does the following sentence create for an AI system? Is your refrigerator running?",
+    "answer": "Classification problem"
+  },
+  {
+    "question": "Fill in the blank. A chatbot runs to understand the human's intentions of their typed input.",
+    "answer": "Natural language processing (NLP)"
+  },
+  {
+    "question": "The majority of callers to a local hospital want to do one of the following three tasks: make an appointment, cancel an appointment, and get the hospital's address. Would this be an appropriate use for a chatbot and why?",
+    "answer": "Yes, because chatbots are designed for a small set of interaction types."
+  },
+  {
+    "question": "For a chatbot, what is an entity considered within the context of a question?",
+    "answer": "A noun"
+  },
+  {
+    "question": "Fill in the blank. A dialog is represented by a that illustrates how a chatbot will respond after a human asks a question.",
+    "answer": "Flowchart"
+  },
+  {
+    "question": "Which of the following statements describes how a chatbot processes a question?",
+    "answer": "The chatbot breaks inputs apart to identify intents and entities."
+  },
+  {
+    "question": "If a doctor asks you to suggest an AI capability that can help analyze X-rays, which computer vision technology would you suggest?",
+    "answer": "Convolutional neural network (CNN)"
+  },
+  {
+    "question": "Which process makes facial recognition possible?",
+    "answer": "Convolutional neural network (CNN)"
+  },
+  {
+    "question": "Which of the following would be a good use of computer vision in a self-driving car?",
+    "answer": "Detecting a stop sign"
+  },
+  {
+    "question": "If you were a consultant, which of the following applications would you recommend for using computer vision?",
+    "answer": "Inspecting robots at work on an assembly line."
+  },
+  {
+    "question": "A generator creates an image of a flower and the discriminator determines if the image is real or fake. This process is repeated until the generator is able to create a image of a flower good enough to fool the discriminator. This is an illustration of which of the following machine learning models?",
+    "answer": "Generative adversarial network (GAN)"
+  },
+  {
+    "question": "Which of the following is a convolutional neural network (CNN) used for when an AI system processes images to derive meaning from them?",
+    "answer": "Identifying patterns and features in images"
+  },
+  {
+    "question": "Which of the following grammatical terms best describes an entity in relation to chatbots?",
+    "answer": "Noun"
+  },
+  {
+    "question": "Which of the following describes how chatbots differ from more general AI systems in their capabilities?",
+    "answer": "Chatbots are focused on answering specific questions in a limited domain."
+  },
+  {
+    "question": "You are working on a project that has two convolutional neural networks (CNNs) working against each other. One CNN (the generator) creates new data, while the other CNN (the discriminator) tries to identify if the data is real or generated. This competitive process helps the generator create increasingly realistic outputs. Which of the following best describes what you are working on?",
+    "answer": "Generative adversarial network (GAN)"
+  },
+  {
+    "question": "Which of the following is the messaging channel of a chatbot that interacts with the user who is asking the question?",
+    "answer": "Frontend"
+  },
+  {
+    "question": "Which of the following explains how detecting emotions can help an AI system in user interactions?",
+    "answer": "It enables the AI to detect when a customer is frustrated or angry and escalate the issue to human agent."
+  },
+  {
+    "question": "Which of the following processes is used by AI to analyze only small parts of an image at a time, making it possible for visual recognition systems to identify parts of an image?",
+    "answer": "Convolutional neural network (CNN)"
+  },
+  {
+    "question": "Imagine you want to create a new AI application. Which of the following would be the most suitable use of NLP for the application?",
+    "answer": "An AI-Powered customer service chatbot that can handle complex inquiries and resolve customer issues"
+  },
+  {
+    "question": "Which of the following is the best use of computer vision in a self-driving car?",
+    "answer": "Detecting a stop sign"
+  },
+  {
+    "question": "Natural language processing is the field of computer science concerned with which of the following?",
+    "answer": "Understanding and manipulating spoken and written language."
+  },
+  {
+    "question": "Which of the following terms is used to describe the reason why a user sends a message in a chatbot?",
+    "answer": "Intent"
+  },
+  {
+    "question": "Imagine you are the CEO of a large retail company. You are considering implementing chatbots on your website to interact with customers. Which of the following situations would be the most appropriate use of a chatbot?",
+    "answer": "Answering frequently asked questions (FAQs) about store policy, product availability, and return procedures."
+  },
+  {
+    "question": "Complete the sentence. can be more difficult for an AI system than identifying tokens because so much of it depends on the context of the sentence. For example, compare \"I went to the docks to ship my box\" to \"I went to the station to ship my box\".",
+    "answer": "Any options"
+  },
+  {
+    "question": "When handling unstructured information, computers begin with one sentence at a time using sentence segmentation. Computers then break the information into smaller chunks that can be individually classified and sorted into a structure for natural language processing to work with them. Which of the following is the term used to refer to those smaller chunks?",
+    "answer": "Tokens"
+  },
+  {
+    "question": "Which of the following statements is correct?",
+    "answer": "Supervised learning requires humans to provide labeled data."
+  },
+  {
+    "question": "Katie has a huge amount of warehouse data to sort but doesn't know how to categorize it.",
+    "answer": "Unsupervised learning"
+  },
+  {
+    "question": "Maria is involved in training the AI for her company. She separates weather data in a database into different categories. What type of learning is she preparing?",
+    "answer": "Supervised learning"
+  },
+  {
+    "question": "Pedro is working with a chess-playing AI system. He rewards it when it wins and penalizes it when it loses. What kind of learning is the system experiencing?",
+    "answer": "Reinforcement learning"
+  },
+  {
+    "question": "Aditi is training an AI system in which it is penalized for answers that are largely wrong and rewarded for answers that are largely correct. What type of machine learning is she using?",
+    "answer": "Reinforcement learning"
+  },
+  {
+    "question": "Which of the following is an advantage of classical machine learning compared to deep learning?",
+    "answer": "It's easier to interpret."
+  },
+  {
+    "question": "You've been asked to create a machine learning service that helps people choose what concert to attend on a particular date based on the type of music they prefer, who is singing, and where the event is taking place. What type of algorithm should you use?",
+    "answer": "Decision tree"
+  },
+  {
+    "question": "Which of the following is an important difference between linear and logistic regressions?",
+    "answer": "Only logistic regressions have outputs between 0 and 1."
+  },
+  {
+    "question": "What type of algorithm would help you find out what you might earn for a salary if you have different levels of college degrees in computer science?",
+    "answer": "Linear regression"
+  },
+  {
+    "question": "You want to know how many hours to study to pass an exam. The \"hours of studying\" data forms a sigmoid function, or an S-shaped curve, between \"fail\" and \"pass\". Which learning algorithm could you use?",
+    "answer": "Logistic regression"
+  },
+  {
+    "question": "After calculating values, what do neural networks often assign to those values that impact the final result?",
+    "answer": "Weight"
+  },
+  {
+    "question": "You are designing a perceptron. Where will you locate the algorithms that run on the signal and then next passes the results to the output layer?",
+    "answer": "In the hidden layers"
+  },
+  {
+    "question": "What kind of brain cells inspired the creation of neural networks?",
+    "answer": "Neurons"
+  },
+  {
+    "question": "How can you demonstrate the concept of machine learning?",
+    "answer": "Determine the farthest distance from a target that an archer can reliably hit bullseyes by shooting arrows repeatedly while walking closer and closer to the target."
+  },
+  {
+    "question": "Fill in the blank. In deep learning, many forms of devices make up the deep learning ecosystem.",
+    "answer": "deep neural network"
+  },
+  {
+    "question": "Which of the following is a limitation of generative AI? Select all that apply.",
+    "answer": "Lack of originality in content, Bias in the generated content"
+  },
+  {
+    "question": "Which of the following models does generative AI use to produce content? Select all that apply.",
+    "answer": "Variational autoencoders (VAEs), Generative adversarial networks (GANs), Autoregressive models"
+  },
+  {
+    "question": "True or false? Roberto works as a coach on a professional sports team. One of his players is returning to workouts with the team after being out 6 months due to an injury. Roberto could use generative AI to create a customized workout plan tailored to the returning athlete's current fitness level.",
+    "answer": "True"
+  },
+  {
+    "question": "Fill in the blank. A distinguishing feature of generative AI, as opposed to other types of AI, is its ability to .",
+    "answer": "create new content"
+  },
+  {
+    "question": "Which of the following is an example of generative AI?",
+    "answer": "Composing music"
+  },
+  {
+    "question": "Which concept describes future AI's ability to improve Earth's safety, sustainability, and security?",
+    "answer": "Instrumented planet."
+  },
+  {
+    "question": "Fill in the blank. In the future, is a capability that will enable AI systems to tailor recommendations and responses to you.",
+    "answer": "personalization"
+  },
+  {
+    "question": "Fill in the blank. is a future form of artificial intelligence that will support a wide range of industries, like healthcare, science, and agriculture.",
+    "answer": "AI everywhere"
+  },
+  {
+    "question": "Which one of the following is a new area of research that will extend the abilities of AI systems?",
+    "answer": "Quantum computing"
+  },
+  {
+    "question": "What do AI researchers call the type of systems likely to emerge by 2050 and beyond?",
+    "answer": "General AI"
+  },
+  {
+    "question": "What is the primary source of inspiration for the design of neural networks?",
+    "answer": "Neural networks are primarily inspired by the workings of the human brain and its interconnected neurons."
+  },
+  {
+    "question": "In a bustling city, Emma, a real estate agent, is tasked with predicting housing prices for prospective buyers. She collects data on various factors such as square footage, number of bedrooms, neighborhood, and distance to amenities. Emma wants to understand how changes in these variables impact the selling price of homes. Which of the following methods would Emma most likely use to analyze the relationship between housing prices and factors such as square footage, number of bedrooms, and neighborhood?",
+    "answer": "Linear regression"
+  },
+  {
+    "question": "Which of the following best describes how machine learning's trial-and-error learning process works?",
+    "answer": "Machine learning adjusts itself by constantly testing new data against its corpus, making modifications based on established patterns."
+  },
+  {
+    "question": "Which of the following encompasses the use of neural networks with multiple hidden layers to analyze complex data and make predictions?",
+    "answer": "Deep learning"
+  },
+  {
+    "question": "You're writing a science fiction story in which the main character is travelling from Earth to the Andromeda galaxy. The main character uses the ship's AI system to think just like a human to keep the ship safe throughout the voyage. Which of the following types of AI best describes the ship's AI system?",
+    "answer": "General AI"
+  },
+  {
+    "question": "In which scenario would logistic regression most likely be used?",
+    "answer": "Predicting the likelihood of customers purchasing a product based on their browsing history."
+  },
+  {
+    "question": "Complete the sentence. Deep learning can be differentiated from classical machine learning in that deep learning exclusively uses .",
+    "answer": "artificial neural networks"
+  },
+  {
+    "question": "Which of the following is a distinguishing feature of generative AI?",
+    "answer": "Generative AI generates new and original content based on a given prompt or data set."
+  },
+  {
+    "question": "Which of the following describes how information flows through the nodes of a perceptron in a neural network?",
+    "answer": "Information flows from the input layer to the hidden layers, where algorithms are applied, and then to the output layer."
+  },
+  {
+    "question": "Henri is training an AI system. He has loaded the rules of the Chinese game of Go into the system. As the AI system plays its first few games, winning some and losing some, it gradually improves. What type of learning is Henri using to train the AI system?",
+    "answer": "Reinforcement learning"
+  },
+  {
+    "question": "In a neural network, which of the following layers is where the activation algorithm is \"fired\"?",
+    "answer": "Hidden layer"
+  },
+  {
+    "question": "Which of the following is an advantage of classical machine learning compared to deep learning?",
+    "answer": "Classical machine learning is easier to interpret."
+  },
+  {
+    "question": "Which of the following is revolutionizing industries by improving decision making, personalizing customer experiences, and enhancing operational efficiency?",
+    "answer": "Generative AI"
+  },
+  {
+    "question": "Deep learning models are preferred over classical machine learning models in situations where which of the following occurs?",
+    "answer": "The data set is very large and consists of unstructured data, such as images or text."
+  },
+  {
+    "question": "As part of research team, you are tagging images of animals in a database as either \"dogs\" or \"not dogs\".",
+    "answer": "Supervised learning"
+  },
+  {
+    "question": "What does IDE stand for?",
+    "answer": "Integrated development environment"
+  },
+  {
+    "question": "You're the project manager of an AI system designed to diagnose problems with fertilization in a large community of farmers. You've hired agricultural experts; experts in the Python, Java, and Lisp programming languages; and data professionals who specialize in SQL database queries. Meanwhile different farmers are submitting data on different crops but not being data experts, they are using different measuring systems at different times of year. Worst of all, they all work in different buildings, using different computer systems that don't easily communicate with each other. Nothing is getting done. Which capability of IBM Watson Studio would most help your AI development?",
+    "answer": "Collaborative environment"
+  },
+  {
+    "question": "Your client has requested that the AI system you're working on should include a screen that displays several different graphs at one time. What type of display is the client requesting?",
+    "answer": "A dashboard"
+  },
+  {
+    "question": "Fill in the missing word: A machine learning is a block of programming code.",
+    "answer": "Algorithm"
+  },
+  {
+    "question": "Which of the following is a difference between conventional computer programs and machine learning models?",
+    "answer": "A machine learning model can reprogram itself."
+  },
+  {
+    "question": "Which of the following did you add your data set as in IBM Watson Studio?",
+    "answer": "Asset"
+  },
+  {
+    "question": "When you selected the CSV file in All assets, what did you see?",
+    "answer": "A preview of the data to used when training your model"
+  },
+  {
+    "question": "After you provisioned the database (Cloud Object Storage) what did you select to access AI/Machine Learning?",
+    "answer": "Catalog"
+  },
+  {
+    "question": "Which of the following services did you provision first for your project?",
+    "answer": "Database storage"
+  },
+  {
+    "question": "After you finished setting up your IBM Watson Studio service, which of the following did you do next?",
+    "answer": "Created a new project"
+  },
+  {
+    "question": "What service did you associate with your experiment that helps with building a model?",
+    "answer": "Machine Learning-Risk_Fraud"
+  },
+  {
+    "question": "In the simulation, you used training data and holdout data when setting up the details of the experiment. Ninety percent of the data was used to train the algorithms. Which of the following describes how the holdout data was used?",
+    "answer": "Testing data"
+  },
+  {
+    "question": "Why did Watson Auto AI select Binary Classification as your Prediction Type?",
+    "answer": "Because predicting risk or no risk has only two options"
+  },
+  {
+    "question": "Look at the confusion matrix generated by your AI model. Which of the following best describes the cell representing No Risk Predicted and No Risk Observed?",
+    "answer": "True positive"
+  },
+  {
+    "question": "Why did Watson test four different algorithms for this AI model?",
+    "answer": "To determine which set of algorithms predicted defaults most effectively."
+  },
+  {
+    "question": "When you first save a notebook, it displays in editable form, but it is not . Which option best completes the sentence?",
+    "answer": "trusted"
+  },
+  {
+    "question": "You've run several versions of an AI machine learning model for a client that wants to anticipate repair needs for a machine on their assembly line. You've identified the version most likely to suit their needs. Now they're asking you to save it in its current form without any changes. What does that tell you they plan to do with it?",
+    "answer": "Continue using it with additional data."
+  },
+  {
+    "question": "Your AI team has developed several models to visually spot defects in building construction and trained them all on the same data. Now they're about to generate a confusion matrix to select the best one. What steps will this involve?",
+    "answer": "Run them all on the identical batches of new data, then compare their performance."
+  },
+  {
+    "question": "Why would you save your model as a Jupyter Notebook (ipynb) file? Select the two that apply.",
+    "answer": "To be able to edit the code and algorithms, To be able to use it with a different data set"
+  },
+  {
+    "question": "When your Pipeline notebook first displays, what form does it take?",
+    "answer": "View only"
+  },
+  {
+    "question": "An AI model is systematically giving an advantage or disadvantage to a certain group. This is an issue of which of the following?",
+    "answer": "Fairness"
+  },
+  {
+    "question": "Which of the following pillars of AI ethics is most related to your AI model withstanding intentional and unintentional interference?",
+    "answer": "Robustness"
+  },
+  {
+    "question": "is a multidisciplinary field that investigates how to optimize AI's beneficial impact while reducing unintended or adverse outcomes.",
+    "answer": "AI Ethics"
+  },
+  {
+    "question": "A trustworthy AI model should allow key facts about that model to be seen very quickly, just like the nutritional label on a box of food. This is an example of which of the following?",
+    "answer": "Transparency"
+  },
+  {
+    "question": "Which of the following pillars of AI is exemplified by anyone being able to describe how an AI system makes a prediction or recommendation?",
+    "answer": "Explainability"
+  },
+  {
+    "question": "Complete the sentence. A group traditionally receives more favorable outcomes compared to a group that traditionally receives less to no favorable outcomes.",
+    "answer": "privileged, unprivileged"
+  },
+  {
+    "question": "When looking at a list of promotion candidates generated by an AI system, which of the following might be an indicator that there is unwanted bias in the system? Select the two that apply.",
+    "answer": "A group receives a systematic disadvantage. A group receives a systematic advantage."
+  },
+  {
+    "question": "Which of the following is true about bias in AI systems?",
+    "answer": "Unwanted bias is a systematic error in AI systems that may result in unfair outcomes."
+  },
+  {
+    "question": "According to the following graph, which of the following options is correct?",
+    "answer": "White employees belong to a privileged group."
+  },
+  {
+    "question": "Fairness in AI aims to minimize which of the following?",
+    "answer": "Unwanted bias"
+  },
+  {
+    "question": "Which of the following describes a robust AI system?",
+    "answer": "The AI system can effectively handle malicious attacks without causing unintentional harm."
+  },
+  {
+    "question": "In a poisoning attack, when does the adversarial attack occur?",
+    "answer": "Training phase"
+  },
+  {
+    "question": "Which of the following are examples of adversarial attacks on an AI system? Select the two that apply",
+    "answer": "Evasion, Poisoning"
+  },
+  {
+    "question": "Which of the following is an example of poisoning in the AI context? Select the three that apply.",
+    "answer": "Modifying AI model architecture, parameters, and logic, Updating features and labels of the training data, Injecting malicious samples into the training data"
+  },
+  {
+    "question": "Which of the following describes how adversarial attacks are intentionally carried out on AI systems to accomplish a malicious end goal?",
+    "answer": "Adversarial attacks attempt to exploit AI system vulnerabilities."
+  },
+  {
+    "question": "When developing explanations for the output of an AI model, it is important to remember that explanations must depending on the user persona.",
+    "answer": "change"
+  },
+  {
+    "question": "is the degree to which an observer can understand the cause of a decision.",
+    "answer": "Interpretable"
+  },
+  {
+    "question": "When doctors use AI to help make a medical diagnosis, it is important that the AI has which of the following? Select the two that apply.",
+    "answer": "Explainability, Interpretability"
+  },
+  {
+    "question": "Which of the following describes an AI system, that everyday people, who do not have any special training in AI, can understand how and why the system came to a particular prediction or recommendation?",
+    "answer": "Explainable"
+  },
+  {
+    "question": "Which of the following options would be true for the AI system shown in the following graphic?",
+    "answer": "The AI system has very little explainability."
+  },
+  {
+    "question": "Sheldon is creating an AI recommendation system. Which of the following facts about the system should he share to ensure transparency? Select the two that apply.",
+    "answer": "What data is collected, Who has access to the data"
+  },
+  {
+    "question": "Complete the sentence. In order to be trustworthy, an AI system must be .",
+    "answer": "Transparent"
+  },
+  {
+    "question": "is disclosing information related to the data used for building AI systems, design decisions made throughout the process, model creation, model evaluation, and model deployment.",
+    "answer": "Transparency"
+  },
+  {
+    "question": "Which of the following business roles contribute to design decisions? Select the two that apply.",
+    "answer": "Business Owner, AI Model Lead"
+  },
+  {
+    "question": "Which of the following business roles is responsible for data? Select the three that apply.",
+    "answer": "Data Scientist, Data Engineer, AI Model Lead"
+  },
+  {
+    "question": "Annie is reviewing what data to collect for the AI model to process. She decides not to collect users' mailing addresses. Which control is Annie employing?",
+    "answer": "Data minimization"
+  },
+  {
+    "question": "Troy is trying to determine if Dean's information was used in the training data set for a predictive AI system. Which of the following describes the kind of attack Troy would use?",
+    "answer": "Membership inference attack"
+  },
+  {
+    "question": "Shirley was arrested for protesting when she in college. Which of the following would this be an example of?",
+    "answer": "Sensitive personal information (SPI)"
+  },
+  {
+    "question": "Ahbed wants to employ privacy controls before his model is deployed. Which of the following should he use? Select the two that apply.",
+    "answer": "Differential privacy, Model anonymization"
+  },
+  {
+    "question": "Which of the following would not be considered personal information (PI)?",
+    "answer": "A person's favorite color"
+  },
+  {
+    "question": "Daniel is trying to get into nursing school. His resume is excellent, but he was turned down by all the schools he applied to. When he looked into the admissions process, he found that all the schools used the same AI model to process the applications. When Daniel looked at the data for the past 10 years, he found that in every year no less than 60% of applicants were female and the rest were male. He also found that every year at least 90% of the students accepted were female. According to this data, which of the following seems to be true?",
+    "answer": "Females are a privileged group."
+  },
+  {
+    "question": "Rutherford is trying to implement a privacy control to fortify the AI system that he is working on. He decides to limit the amount of personal and sensitive data that is collected and takes steps to ensure that the data collected is only as granular as needed. Which of the following privacy controls is Rutherford using?",
+    "answer": "Data minimization"
+  },
+  {
+    "question": "When you asked her why there were so many romantic comedies in her Netflix recommendations, your grandmother explained that Netflix looks at the movies she watches and the movies she likes. She said they use that information to look for other movies to recommend. Since she watches a lot of romantic comedies, she gets a lot of them recommended to her. Which pillar of AI ethics is Netflix adhering to in this example?",
+    "answer": "Explainability"
+  },
+  {
+    "question": "Lester is working on an AI team that is concerned with making sure that all the people in his company receive equitable treatment. In which of the following areas of AI ethics is Lester's team working?",
+    "answer": "Fairness"
+  },
+  {
+    "question": "While preparing a data set for an AI system dealing with patient data, Nora needs to determine which of the following information qualifies as sensitive personal information (SPI) and needs to be removed from the data set. Which of the following would be considered SPI?",
+    "answer": "Patient name"
+  },
+  {
+    "question": "Uma works for a large travel booking company. She is responsible for disclosing all information related to the data her company uses to build their vacation recommendation AI system. Which of the following is Uma in charge of?",
+    "answer": "Transparency"
+  },
+  {
+    "question": "Clara has been brought in to evaluate an AI system. Based on the following graphic, she finds that Model B is more interpretable than Model A. Which of the following best describes why Model B is more interpretable than Model A?",
+    "answer": "Model B's flow is clear and easy to understand."
+  },
+  {
+    "question": "Which of the following adds random noise during model training to reduce the impact of any single individual on the model's outcomes and to give a guarantee that an individual in the training data set could not be identified?",
+    "answer": "Differential privacy"
+  },
+  {
+    "question": "Which of the following business roles is responsible for the deployment of AI models?",
+    "answer": "AI Ops Engineer"
+  },
+  {
+    "question": "Rose is working as an auditor on a large AI project. In an effort to provide transparency, she is creating a framework to map key details of the system to the people who can provide that information. Which of the following teams is responsible for the algorithms used to train the AI?",
+    "answer": "Model team"
+  },
+  {
+    "question": "Which of the following terms describes systematic errors in AI systems that, intentionally or not, generate unfair decisions?",
+    "answer": "Bias"
+  },
+  {
+    "question": "Maria is on a team creating an AI model to help recruit engineers. Maria wants to ensure that the data set does not include specific attributes such as race, age, sex at birth, and ethnicity. What type of attributes are these examples of?",
+    "answer": "Protected attributes"
+  },
+  {
+    "question": "Bao is reviewing a diagnostic AI model when he notices something strange. The data set is larger than it should be. After reviewing the activity over the past weeks, he notices that extra items were placed in the data set that could have resulted in the AI model rendering incorrect diagnoses. However, the AI model was able to process the bogus data and still render accurate and correct diagnoses for each data item. This is an example of which of the following?",
+    "answer": "Robustness"
+  },
+  {
+    "question": "Imagine you're building an AI-powered tutor for students. To personalize learning experiences, the system needs access to some student data. However, you prioritize protecting student privacy and don't want to use anything that could be considered personal information (PI). Which of the following would be considered personal information (PI)?",
+    "answer": "Home address"
+  },
+  {
+    "question": "The first x-ray in the following graphic shows no disease. An adversary adds noise to the data and then sends the data through the AI model, which results in an x-ray showing disease present. Which of the following areas of AI ethics is involved in defending against such an attack?",
+    "answer": "Robustness"
+  },
+  {
+    "question": "You're applying for an entry-level job as an AI professional. The interviewer asks you about your workplace skills. Which of the following skills should you elaborate on?",
+    "answer": "Communication and teamwork"
+  },
+  {
+    "question": "Which of the following statements is true about industries in which AI professionals work?",
+    "answer": "Most industries have already hired or are in the process of hiring AI professionals."
+  },
+  {
+    "question": "Which AI professional specializes in human language and works on voice assistants and speech recognition?",
+    "answer": "Natural language processing engineer"
+  },
+  {
+    "question": "You're in a job interview and you are asked to describe your advanced AI technical skills. What set of skills should you elaborate on?",
+    "answer": "Python, TensorFlow, and machine learning"
+  },
+  {
+    "question": "What is the primary job role of a business intelligence developer?",
+    "answer": "To analyze complex data, looking at business and market trends to increase profitability of their organization"
+  }
+]
