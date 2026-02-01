@@ -98,93 +98,61 @@ Alexander Graham Bell
 
 ### Basic Usage
 
-1. **Select Text:** Highlight any question on a webpage
-2. **Right-Click:** Open the context menu
-3. **Click "Search Answer":** AnswerFinder will instantly display the answer
+1. **Select any question text** on a webpage
+2. **Right-click** to open the context menu
+3. **Click "Search Answer"**
+4. Get instant results!
 
-### Answer Display
+### First Time Setup
 
-The answer appears in a clean popup overlay showing:
+1. Click the AnswerFinder icon in your toolbar
+2. Upload your Q&A file (JSON or TXT format)
+3. (Optional) Enable AI Answering for questions not in your database
+4. Start searching!
 
-- **📊 Confidence Score:** How confident the match is (0-100%)
-- **💬 The Answer:** Clear, formatted response
-- **🔍 Match Type:** Which matching algorithm found the answer
-- **⚡ Response Time:** How fast the answer was found
+### Getting Answers
 
-### Keyboard Shortcuts (Coming Soon)
+AnswerFinder automatically searches your uploaded questions:
 
-- `Ctrl+Shift+F` (or `Cmd+Shift+F` on Mac) - Quick search selected text
+- **Match Found:** Shows the answer with confidence score
+- **No Match + AI Disabled:** Suggests enabling AI in settings
+- **No Match + AI Enabled:** AI generates an intelligent answer
+
+The answer appears in a sidebar overlay showing:
+
+- **The Answer:** Clear, formatted response
+- **Confidence Score:** How confident the match is
+- **Match Type:** Local database or AI-generated
+- **Response Time:** How fast the answer was found
 
 ---
 
 ## 🔧 How It Works
 
-AnswerFinder uses a sophisticated **5-Tier Matching System** to find the best answer:
+AnswerFinder searches your uploaded questions using a **smart 4-tier matching system**, then optionally uses AI:
 
-### Tier 1: Exact Match
+### How Questions Are Matched
 
-```
-Perfect character-by-character match
-Confidence: 100% | Speed: <1ms
-```
+**Tier 1: Exact Match** - Perfect character-by-character match (100% confidence, <1ms)
 
-The fastest method - searches for identical questions in your database.
+**Tier 2: Keyword Match** - Matches based on important words (85-95% confidence, <5ms)
 
-### Tier 2: Keyword Match
+**Tier 3: Fuzzy Match** - Handles typos and variations (70-85% confidence, <10ms)
 
-```
-Matches based on important words
-Confidence: 85-95% | Speed: <5ms
-```
+**Tier 4: Partial Match** - Finds answers for incomplete questions (60-75% confidence, <15ms)
 
-Extracts key terms and finds questions with the same core concepts.
+**Tier 5: AI Answering** - If enabled and no local match found, generates intelligent answers (~2-4s)
 
-### Tier 3: Fuzzy Match
+### The Search Flow
 
-```
-Handles typos and variations
-Confidence: 70-85% | Speed: <10ms
-```
+1. You select and search text
+2. AnswerFinder tries all 4 matching methods on your uploaded questions
+3. If a good match is found → Shows the answer
+4. If no match found:
+   - **AI Disabled:** Shows "No answer found" with suggestion to enable AI
+   - **AI Enabled:** Asks AI to generate an answer
 
-Uses advanced algorithms to match similar questions even with spelling errors.
-
-### Tier 4: Partial Match
-
-```
-Finds answers for incomplete questions
-Confidence: 60-75% | Speed: <15ms
-```
-
-Useful when you select only part of a question.
-
-### Tier 5: AI-Powered Answer
-
-```
-Generates intelligent responses
-Confidence: Variable | Speed: ~2-4s
-```
-
-When no local match is found, AI generates an answer with reasoning.
-
-### The Matching Flow
-
-```
-User selects text
-        ↓
-   Normalize text
-        ↓
-   Try Exact Match ────→ Found? → Return answer
-        ↓ No
-   Try Keyword Match ───→ Found? → Return answer
-        ↓ No
-   Try Fuzzy Match ─────→ Found? → Return answer
-        ↓ No
-   Try Partial Match ───→ Found? → Return answer
-        ↓ No
-   AI Fallback (if enabled) ────→ Generate answer
-        ↓ No/Disabled
-   Return "No match found"
-```
+**Key Point:** All matching happens automatically. You just search, and AnswerFinder finds the best answer!
 
 ---
 
@@ -290,40 +258,23 @@ Check the included sample files:
 
 ### Settings Panel
 
-Open the extension popup to access all settings:
+Open the extension popup to configure:
 
-#### Matching Options
-
-**Fuzzy Matching**
-
-- Enables typo tolerance
-- Recommended: ✅ ON
-
-**Partial Matching**
-
-- Matches incomplete questions
-- Recommended: ✅ ON
-
-**Minimum Confidence**
-
-- How strict the matching should be
-- Range: 0-100%
-- Recommended: 50%
-
-#### AI Options
+#### AI Answering
 
 **Enable AI Answering**
 
-- Activates AI fallback system
-- Toggle ON to use AI when no local match exists
+- When enabled, AI generates answers for questions not in your database
+- When disabled, you'll see a message suggesting to enable AI
 - Uses secure Cloudflare Workers backend by default
+- Recommended: ✅ ON (for complete coverage)
 
 #### Data Management
 
 **Export Data**
 
 - Download your current Q&A database as JSON
-- Great for backups
+- Great for backups and sharing
 
 **Clear All Data**
 

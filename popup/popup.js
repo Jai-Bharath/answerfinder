@@ -13,10 +13,7 @@ const uploadResult = document.getElementById("uploadResult");
 const totalQuestionsEl = document.getElementById("totalQuestions");
 const cacheSizeEl = document.getElementById("cacheSize");
 const lastImportEl = document.getElementById("lastImport");
-const fuzzyMatchingEl = document.getElementById("fuzzyMatching");
-const partialMatchingEl = document.getElementById("partialMatching");
-const minConfidenceEl = document.getElementById("minConfidence");
-const confidenceValueEl = document.getElementById("confidenceValue");
+
 const exportBtn = document.getElementById("exportBtn");
 const clearBtn = document.getElementById("clearBtn");
 const aiEnabledEl = document.getElementById("aiEnabled");
@@ -54,13 +51,6 @@ async function init() {
 function setupEventListeners() {
   uploadBtn.addEventListener("click", () => fileInput.click());
   fileInput.addEventListener("change", handleFileUpload);
-
-  fuzzyMatchingEl.addEventListener("change", saveSettings);
-  partialMatchingEl.addEventListener("change", saveSettings);
-  minConfidenceEl.addEventListener("input", () => {
-    confidenceValueEl.textContent = `${minConfidenceEl.value}%`;
-    saveSettings();
-  });
 
   aiEnabledEl.addEventListener("change", saveSettings);
 
@@ -161,11 +151,6 @@ async function loadSettings() {
 
     if (response.type === "RESPONSE") {
       const settings = response.payload;
-      fuzzyMatchingEl.checked = settings.fuzzyMatchingEnabled !== false;
-      partialMatchingEl.checked = settings.partialMatchingEnabled !== false;
-      minConfidenceEl.value = (settings.minConfidence || 0.5) * 100;
-      confidenceValueEl.textContent = `${minConfidenceEl.value}%`;
-
       aiEnabledEl.checked = settings.aiEnabled === true;
     }
   } catch (error) {
@@ -175,9 +160,6 @@ async function loadSettings() {
 
 async function saveSettings() {
   const settings = {
-    fuzzyMatchingEnabled: fuzzyMatchingEl.checked,
-    partialMatchingEnabled: partialMatchingEl.checked,
-    minConfidence: parseInt(minConfidenceEl.value) / 100,
     aiEnabled: aiEnabledEl.checked,
   };
 
