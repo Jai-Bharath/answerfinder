@@ -1,138 +1,105 @@
 <div align="center">
 
-<img src="assets/logo.png" alt="AnswerFinder Logo" width="128" height="128" />
+<img src="assets/icons/icon128.png" alt="AnswerFinder Logo" width="128" height="128" />
 
 # AnswerFinder
-### Intelligent Offline Q&A Engine for Chrome
+### The Intelligent Q&A Engine for Chrome
 
-[![Version](https://img.shields.io/badge/version-2.0-blue.svg?style=for-the-badge)](manifest.json)
-[![License](https://img.shields.io/badge/license-MIT-green.svg?style=for-the-badge)](LICENSE)
-[![Status](https://img.shields.io/badge/status-active-success.svg?style=for-the-badge)](STATUS.md)
+[![Version](https://img.shields.io/badge/version-2.1-blue.svg?style=for-the-badge)](manifest.json)
+[![Status](https://img.shields.io/badge/status-production-success.svg?style=for-the-badge)](STATUS.md)
 [![Platform](https://img.shields.io/badge/platform-Chrome%20Extension-orange.svg?style=for-the-badge)](https://developer.chrome.com/docs/extensions/mv3/)
+[![Hosting](https://img.shields.io/badge/backend-Cloudflare%20Workers-blue?style=for-the-badge&logo=cloudflare)](https://workers.cloudflare.com/)
 
-<p align="center">
-  <b>AnswerFinder</b> transforms your browser into a powerful, offline knowledge base. <br/>
-  Upload your own Q&A data and find answers instantly on any webpage without leaving the tab.
-</p>
+**AnswerFinder** is a professional-grade assistant that combines high-speed **Offline Lookup** with a powerful **AI Fallback** system. Never be without an answer again.
+
+[Getting Started](#-getting-started) • [AI Features](#-ai-fallback-system) • [Data Formats](#-data-formats) • [Deployment](#-hosting-your-own-backend)
 
 </div>
 
 ---
 
-## 🚀 Why AnswerFinder?
+## 🚀 How It Works
 
-Most answer finders are slow, require an internet connection, or simply fail when the wording isn't exact. **AnswerFinder is different.**
+AnswerFinder uses a **Multi-Tier Search Architecture** to find the right answer, prioritizing your local data for speed and privacy.
 
-| Feature | Description |
-| :--- | :--- |
-| **⚡ Instant Search** | Sub-100ms response time using locally indexed data. **Zero latency.** |
-| **🧠 4-Tier Matching** | Uses **Exact**, **Keyword**, **Fuzzy**, and **Partial** logic to find answers even if the question is rephrased. |
-| **🔒 Offline & Private** | Your data never leaves your device. It lives in your browser's IndexedDB. |
-| **🎨 Modern UI** | Sleek sidebar interface that slides in without blocking your view. |
-| **🛠️ Extensive Support** | Supports both **TXT** and **JSON** formats with bulk upload capabilities (10,000+ items). |
+### 1. The Local Engine (Tier 1-4)
+When you select text and click "Search Answer," the extension instantly scans your imported knowledge base using:
+1.  **Exact Matching**: Identical character match.
+2.  **Keyword Overlap**: Matching based on core subjects.
+3.  **Fuzzy Logic**: Handles typos and small phrasing differences.
+4.  **Partial Match**: Finds answers even if you only select part of the question.
 
----
-
-## 📥 Installation
-
-1.  **Clone or Download** this repository.
-2.  Open Chrome and go to `chrome://extensions/`.
-3.  **Enable Developer Mode** (Top right toggle).
-4.  Click **Load Unpacked**.
-5.  Select the `answerfinder` folder.
-
-> **Upgrade Note**: If upgrading from v1.x, please remove the old extension and re-add it to ensure the new Service Worker (v1.2+) loads correctly.
+### 2. The AI Safety Net (Tier 5)
+If no local match is found (or confidence is too low), the **AI Fallback** kicks in. It sends the question to a cloud-hosted LLM (**Gemma 2.0**) which provides a factual answer and step-by-step reasoning.
 
 ---
 
-## 🛠️ Usage Guide
+## 🧠 AI Fallback System
 
-### 1. Uploading Data
+Don't have the answer in your database? No problem.
 
-AnswerFinder supports two formats. Click the extension icon and choose your file.
+*   **Smart Reasoning**: AI doesn't just give an answer; it explains *why* it's correct.
+*   **Concise Results**: Optimized prompts ensure you get a 4-line summary, not a wall of text.
+*   **Safety First**: AI is disabled by default. You control when to use it.
+*   **Privacy**: Questions are routed through a secure proxy to keep your identity private.
 
-#### Option A: Simple Text (`.txt`)
-Perfect for quick lists. Separate pairs with a blank line.
+---
 
-```text
-What is the powerhouse of the cell?
-Mitochondria
+## 📤 Data Formats & Uploading
 
-Who wrote Hamlet?
-William Shakespeare
-```
+AnswerFinder is designed to handle thousands of questions with zero lag.
 
-#### Option B: Structured JSON (`.json`)
-Ideal for complex data or exports.
-
+### Local JSON Format (Recommended)
+Best for backing up your data or complex entries.
 ```json
 [
   {
-    "question": "What is the speed of light?",
-    "answer": "299,792,458 m/s"
-  },
-  {
-    "question": "Define Recursion.",
-    "answer": "See: Recursion."
+    "question": "What is the capital of Japan?",
+    "answer": "Tokyo"
   }
 ]
 ```
 
-### 2. Finding Answers
+### Simple TXT Format
+Perfect for quick study sheets. Separate pairs with a blank line.
+```text
+Question 1? 
+Answer 1
 
-1.  **Highlight** any question text on a webpage.
-2.  **Right-Click** and select **"Search Answer"**.
-3.  The answer sidebar appears instantly! 🚀
+Question 2?
+Answer 2
+```
+
+---
+
+## 🛠️ Installation
+
+1.  Clone this repository.
+2.  Open Chrome and visit `chrome://extensions/`.
+3.  Enable **Developer Mode**.
+4.  Click **Load Unpacked** and select this folder.
 
 ---
 
 ## ⚙️ Configuration
 
-Customize the engine to your needs via the Popup Menu:
-
-| Setting | Function | Recommended |
-| :--- | :--- | :--- |
-| **Fuzzy Matching** | Finds answers even with typos/spelling errors. | ✅ ON |
-| **Partial Matching** | Finds answers if you select a substring of the question. | ✅ ON |
-| **Confidence Threshold** | Filters out weak matches (0-100%). | **50%** |
+Open the extension popup to customize your experience:
+*   **Enable AI Fallback**: Toggle this ON to use the Gemma-powered assistant.
+*   **Confidence Slider**: Adjust how "picky" the local engine is (Recommended: 50%).
+*   **Theme**: Choose between Light, Dark, or System Auto.
 
 ---
 
-## 🧩 Architecture
+## 🌐 Hosting Your Own Backend
 
-AnswerFinder is built on a modern, event-driven architecture designed for speed.
-
-*   **Core**: Vanilla JS (ES Modules) - No bloat.
-*   **Storage**: IndexedDB for persistent, large-scale storage.
-*   **Matching**: Custom implementation of Levenshtein, Jaro-Winkler, and TF-IDF algorithms.
-*   **UI**: Native Web Components style with Shadow DOM isolation (future) and CSS Grid.
+By default, this extension uses a shared Cloudflare Worker. If you are a developer and want to host your own:
+1.  Navigate to `/proxy/cloudflare-worker`.
+2.  Run `npx wrangler deploy`.
+3.  Update the `aiProxyUrl` in your settings!
 
 ---
 
-## 🐞 Troubleshooting
-
-<details>
-<summary><b>Click "Upload" but nothing happens?</b></summary>
-<br>
-This is a known Chrome issue with file pickers closing the popup. We implemented a fix in v1.2! If it persists, toggle the extension OFF/ON in <code>chrome://extensions</code>.
-</details>
-
-<details>
-<summary><b>Infinite "Searching..." Spinner?</b></summary>
-<br>
-This occurs if the background script is outdated. Click "Update" in the extensions page and reload the extension.
-</details>
-
-<details>
-<summary><b>"No Match Found"?</b></summary>
-<br>
-Try lowering the confidence threshold to 30% or ensuring "Fuzzy Matching" is enabled.
-</details>
-
----
-
-<div align="center">
-
-**Version 2.0.0** • **MIT License** • **Made with ❤️ for Efficiency**
-
-</div>
+<p align="center">
+  <b>Built for students, researchers, and power users.</b> <br/>
+  MIT License • 2026 AnswerFinder Team
+</p>

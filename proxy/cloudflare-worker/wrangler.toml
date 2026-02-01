@@ -1,0 +1,9 @@
+name = "answerfinder-ai-proxy"
+main = "worker.js"
+compatibility_date = "2024-03-01"
+
+[vars]
+# Add non-sensitive variables here if needed
+
+# Sensitive keys (OPENROUTER_API_KEY) should be added via:
+# wrangler secret put OPENROUTER_API_KEY
