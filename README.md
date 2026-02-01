@@ -68,30 +68,34 @@ William Shakespeare
 ## ✨ Features
 
 ### 🎯 Smart 4-Tier Matching
-- **Exact Match:** Perfect character match (<1ms, 100% confidence)
-- **Keyword Match:** Matches important words (<5ms, 85-95% confidence)
-- **Fuzzy Match:** Handles typos like "Wha is Paris?" (<10ms, 70-85% confidence)
-- **Partial Match:** Finds "capital France" in full questions (<15ms, 60-75% confidence)
+
+- **Exact Match** — Perfect character match (<1ms, 100% confidence)
+- **Keyword Match** — Matches important words (<5ms, 85-95% confidence)
+- **Fuzzy Match** — Handles typos like "Wha is Paris?" (<10ms, 70-85% confidence)
+- **Partial Match** — Finds "capital France" in full questions (<15ms, 60-75% confidence)
 
 ### 🤖 AI-Powered Fallback
-- **Gemma 2 AI** answers questions not in your database
-- **Smart reasoning:** Explains why answers are correct
-- **Nearly free:** ~$0.0001 per query
-- **Privacy-focused:** Secure anonymous proxy
-- **Cached results:** Never asks twice for same question
+
+- **Gemma 2 AI** — Answers questions not in your database
+- **Smart reasoning** — Explains why answers are correct
+- **Nearly free** — ~$0.0001 per query
+- **Privacy-focused** — Secure anonymous proxy
+- **Cached results** — Never asks twice for same question
 
 ### 💾 Data Management
-- **100% local storage** - data stays in your browser
-- **No tracking** - zero analytics or telemetry
-- **Export/Import** - full data portability
-- **Handles 10,000+ questions** effortlessly
+
+- **100% local storage** — Data stays in your browser
+- **No tracking** — Zero analytics or telemetry
+- **Export/Import** — Full data portability
+- **Handles 10,000+ questions** — Effortlessly
 
 ### 🎨 User Experience
-- **Clean sidebar overlay** - non-intrusive display
-- **Auto-hide after viewing** - stays out of your way
-- **One-click copying** - copy answers instantly
-- **Confidence scores** - know match reliability
-- **Context menu integration** - right-click anywhere
+
+- **Clean sidebar overlay** — Non-intrusive display
+- **Auto-hide after viewing** — Stays out of your way
+- **One-click copying** — Copy answers instantly
+- **Confidence scores** — Know match reliability
+- **Context menu integration** — Right-click anywhere
 
 ---
 
@@ -141,11 +145,11 @@ Done! Uses default secure proxy - no API key needed.
 
 ### AI Details
 
-- **Model:** Google Gemma 2 (fast, accurate, cost-effective)
-- **Privacy:** Anonymous queries through secure Cloudflare Worker
-- **Cost:** ~$0.0001 per query (100 queries ≈ $0.01)
-- **Daily limit:** 100 queries
-- **Caching:** Answers saved locally, never re-queried
+- **Model** — Google Gemma 2 (fast, accurate, cost-effective)
+- **Privacy** — Anonymous queries through secure Cloudflare Worker
+- **Cost** — ~$0.0001 per query (100 queries ≈ $0.01)
+- **Daily limit** — 100 queries per day
+- **Caching** — Answers saved locally, never re-queried
 
 ### When to Enable AI
 
@@ -204,35 +208,40 @@ Alexander Fleming in 1928
 
 Click the extension icon to access:
 
-**Enable AI Answering**
+### Enable AI Answering
 - Toggle AI fallback for questions not in database
 
-**Export Data**
+### Export Data
 - Download your Q&A database as `answerfinder-export-[timestamp].json`
 - Use for backups or sharing
 
-**Clear All Data**
+### Clear All Data
 - Remove all questions and cache
 - ⚠️ **Cannot be undone!** Export first if needed
 
-**Statistics Display**
+### Statistics Display
 - Total questions loaded
 - Cached search results
 - Last import timestamp
 
-**Advanced:** Custom AI backend setup instructions in [USAGE.md](USAGE.md)
+### Advanced Setup
+- Custom AI backend setup instructions in [USAGE.md](USAGE.md)
 
 ---
 
 ## 🎯 Use Cases
 
-**Students:** Upload flashcards → Study online → Get instant answers while reading
+### 📚 Students
+Upload flashcards → Study online → Get instant answers while reading
 
-**Researchers:** Convert paper abstracts to Q&A → Look up terms instantly → AI fills knowledge gaps
+### 🔬 Researchers
+Convert paper abstracts to Q&A → Look up terms instantly → AI fills knowledge gaps
 
-**Developers:** API docs to Q&A format → Quick reference while coding → No context switching
+### 💻 Developers
+API docs to Q&A format → Quick reference while coding → No context switching
 
-**Teams:** Company FAQ in JSON → Share with team → Instant access → AI handles edge cases
+### 👥 Teams
+Company FAQ in JSON → Share with team → Instant access → AI handles edge cases
 
 ---
 
@@ -265,21 +274,29 @@ Click the extension icon to access:
 
 ## ❓ FAQ
 
-**Supported browsers?** Chrome, Edge, Brave, Opera (Chromium-based)
+**Supported browsers?**  
+Chrome, Edge, Brave, Opera (Chromium-based)
 
-**Question limit?** Tested with 10,000+ questions successfully
+**Question limit?**  
+Tested with 10,000+ questions successfully
 
-**Multiple files?** One at a time - export and merge manually if needed
+**Multiple files?**  
+One at a time - export and merge manually if needed
 
-**Data storage?** 100% local in your browser only
+**Data storage?**  
+100% local in your browser only
 
-**Cost?** Extension is free. AI costs ~$0.0001/query (only if enabled)
+**Cost?**  
+Extension is free. AI costs ~$0.0001/query (only if enabled)
 
-**Offline use?** Local matching works offline. AI requires internet.
+**Offline use?**  
+Local matching works offline. AI requires internet
 
-**PDF support?** Yes! If you can select text, it works.
+**PDF support?**  
+Yes! If you can select text, it works
 
-**Privacy?** No tracking. AI queries are anonymous if enabled.
+**Privacy?**  
+No tracking. AI queries are anonymous if enabled
 
 ---
 
@@ -327,7 +344,7 @@ MIT License - See [LICENSE](LICENSE) file
 
 ---
 
-##  Credits
+## Credits
 
 **Built with:** Chrome Extension Manifest V3 • IndexedDB • OpenRouter API • Cloudflare Workers • Google Gemma 2 AI
 
@@ -340,7 +357,5 @@ MIT License - See [LICENSE](LICENSE) file
 ### Made with ❤️ for Knowledge Seekers
 
 **Found it useful? Star ⭐ this repo!**
-
-[Report Bug](https://github.com/yourusername/answerfinder/issues) • [Request Feature](https://github.com/yourusername/answerfinder/issues) • [Contribute](CONTRIBUTING.md)
 
 </div>
