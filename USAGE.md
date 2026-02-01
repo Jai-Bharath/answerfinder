@@ -108,7 +108,7 @@ Alexander Graham Bell invented the telephone in 1876.
 - Enable AI only when needed to save on costs
 - Review AI answers for accuracy
 - Add good AI answers to your database (export, edit, re-upload)
-- Set a custom proxy URL for better privacy
+- Extension uses secure Cloudflare Workers by default
 
 ---
 
@@ -131,11 +131,10 @@ Alexander Graham Bell invented the telephone in 1876.
 
 ### AI Not Working - Solutions
 
-1. ✅ Verify "Enable AI for Answers" is checked
-2. ✅ Check proxy URL is correct
-3. ✅ Ensure you haven't exceeded daily limit (100 queries)
-4. ✅ Test proxy server is running (if using local server)
-5. ✅ Check browser console for errors (F12)
+1. ✅ Verify "Enable AI Answering" is checked
+2. ✅ Ensure you haven't exceeded daily limit (100 queries)
+3. ✅ Check browser console for errors (F12)
+4. ✅ Try disabling and re-enabling AI
 
 ### Extension Not Loading
 

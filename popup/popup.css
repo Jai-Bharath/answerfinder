@@ -6,7 +6,8 @@
 
 body {
   width: 400px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 14px;
   color: #333;
   background: #f8f9fa;
@@ -39,7 +40,7 @@ section {
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 16px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
@@ -114,9 +115,15 @@ h2 {
 }
 
 @keyframes progress {
-  0% { width: 0%; }
-  50% { width: 100%; }
-  100% { width: 0%; }
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
 }
 
 .progress-text {
@@ -193,15 +200,43 @@ h2 {
   cursor: pointer;
 }
 
+.setting-item.slider-item label {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.setting-item.slider-item span:first-child {
+  font-weight: 500;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .setting-item input[type="checkbox"] {
   width: 16px;
   height: 16px;
   cursor: pointer;
+  accent-color: #007bff;
 }
 
 .setting-item input[type="range"] {
   flex: 1;
-  margin: 0 8px;
+  cursor: pointer;
+  accent-color: #007bff;
+}
+
+.setting-item span {
+  color: #495057;
+}
+
+#confidenceValue {
+  min-width: 40px;
+  font-weight: 600;
+  color: #007bff;
 }
 
 .actions-section {

@@ -212,8 +212,8 @@ AI Fallback is a smart feature that:
 
 1. Open AnswerFinder popup
 2. Scroll to Settings section
-3. Check "Enable AI for Answers"
-4. (Optional) Set your proxy URL if using a custom backend
+3. Check "Enable AI Answering"
+4. That's it! The extension uses a Cloudflare Worker by default
 
 ### AI Response Format
 
@@ -312,16 +312,11 @@ Open the extension popup to access all settings:
 
 #### AI Options
 
-**Enable AI for Answers**
+**Enable AI Answering**
 
 - Activates AI fallback system
 - Toggle ON to use AI when no local match exists
-
-**Proxy URL**
-
-- Backend server for AI queries
-- Default: `http://localhost:3000/api/query`
-- Use Cloudflare Worker for production
+- Uses secure Cloudflare Workers backend by default
 
 #### Data Management
 
@@ -337,11 +332,18 @@ Open the extension popup to access all settings:
 
 ---
 
-## 🌐 Backend Setup (Optional)
+## 🌐 Backend Setup
 
-AnswerFinder can work without a backend, but AI features require a proxy server.
+**AnswerFinder uses Cloudflare Workers by default** - no setup required!
 
-### Option 1: Local Development Server
+The extension comes pre-configured with a secure Cloudflare Worker at:
+`https://answerfinder-ai-proxy.workers.dev/api/query`
+
+### Want to Use Your Own Backend?
+
+If you prefer to host your own AI proxy, you have two options:
+
+### Option 1: Deploy Your Own Cloudflare Worker
 
 1. **Navigate to proxy directory:**
 
@@ -401,9 +403,42 @@ AnswerFinder can work without a backend, but AI features require a proxy server.
    wrangler deploy
    ```
 
-6. **Update extension settings:**
-   - Copy your worker URL (e.g., `https://answerfinder.yourname.workers.dev`)
-   - Paste it in the Proxy URL setting
+6. **Update the extension code:**
+   - Open `lib/ai/ai-service.js`
+   - Replace the default `proxyUrl` with your worker URL
+   - Example: `https://answerfinder.yourname.workers.dev/api/query`
+
+### Option 2: Local Development Server
+
+1. **Navigate to proxy directory:**
+
+   ```bash
+   cd proxy
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   npm install
+   ```
+
+3. **Set environment variables:**
+
+   ```bash
+   echo "OPENROUTER_API_KEY=your_key_here" > .env
+   ```
+
+4. **Start the server:**
+
+   ```bash
+   node server.js
+   ```
+
+5. **Server runs on:** `http://localhost:3000`
+
+6. **Update the extension code:**
+   - Open `lib/ai/ai-service.js`
+   - Replace the default `proxyUrl` with `http://localhost:3000/api/query`
 
 ### Getting an API Key
 

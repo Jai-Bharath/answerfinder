@@ -1,97 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AnswerFinder</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AnswerFinder</title>
-  <link rel="stylesheet" href="popup.css">
-</head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>AnswerFinder</h1>
+        <p class="subtitle">Intelligent Q&A Lookup</p>
+      </header>
 
-<body>
-  <div class="container">
-    <header>
-      <h1>AnswerFinder</h1>
-      <p class="subtitle">Intelligent Q&A Lookup</p>
-    </header>
-
-    <section class="upload-section">
-      <h2>Upload Q&A File</h2>
-      <div class="upload-area">
-        <input type="file" id="fileInput" accept=".txt,.json" hidden>
-        <button id="uploadBtn" class="btn btn-primary">Choose File</button>
-        <p id="fileName" class="file-name"></p>
-      </div>
-      <div id="uploadProgress" class="progress" hidden>
-        <div class="progress-bar"></div>
-        <p class="progress-text">Processing...</p>
-      </div>
-      <div id="uploadResult" class="result" hidden></div>
-    </section>
-
-    <section class="stats-section">
-      <h2>Statistics</h2>
-      <div class="stats-grid">
-        <div class="stat-item">
-          <div class="stat-value" id="totalQuestions">0</div>
-          <div class="stat-label">Questions Loaded</div>
+      <section class="upload-section">
+        <h2>Upload Q&A File</h2>
+        <div class="upload-area">
+          <input type="file" id="fileInput" accept=".txt,.json" hidden />
+          <button id="uploadBtn" class="btn btn-primary">Choose File</button>
+          <p id="fileName" class="file-name"></p>
         </div>
-        <div class="stat-item">
-          <div class="stat-value" id="cacheSize">0</div>
-          <div class="stat-label">Cache Entries</div>
+        <div id="uploadProgress" class="progress" hidden>
+          <div class="progress-bar"></div>
+          <p class="progress-text">Processing...</p>
         </div>
-      </div>
-      <div class="meta-info">
-        <p id="lastImport">No data loaded</p>
-      </div>
-    </section>
+        <div id="uploadResult" class="result" hidden></div>
+      </section>
 
-    <section class="settings-section">
-      <h2>Settings</h2>
-      <div class="setting-item">
-        <label>
-          <input type="checkbox" id="fuzzyMatching" checked>
-          Enable Fuzzy Matching
-        </label>
-      </div>
-      <div class="setting-item">
-        <label>
-          <input type="checkbox" id="partialMatching" checked>
-          Enable Partial Matching
-        </label>
-      </div>
-      <div class="setting-item">
-        <label>
-          Minimum Confidence:
-          <input type="range" id="minConfidence" min="0" max="100" value="50" step="5">
-          <span id="confidenceValue">50%</span>
-        </label>
-      </div>
-      <div class="setting-item">
-        <label>
-          <input type="checkbox" id="aiEnabled">
-          Enable AI Fallback
-        </label>
-      </div>
-      <div class="setting-item">
-        <label>
-          Proxy URL:
-          <input type="text" id="aiProxyUrl" placeholder="http://localhost:3000/api/query" class="input-text">
-        </label>
-      </div>
-    </section>
+      <section class="stats-section">
+        <h2>Statistics</h2>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-value" id="totalQuestions">0</div>
+            <div class="stat-label">Questions Loaded</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="cacheSize">0</div>
+            <div class="stat-label">Cache Entries</div>
+          </div>
+        </div>
+        <div class="meta-info">
+          <p id="lastImport">No data loaded</p>
+        </div>
+      </section>
 
-    <section class="actions-section">
-      <button id="exportBtn" class="btn btn-secondary">Export Data</button>
-      <button id="clearBtn" class="btn btn-danger">Clear All Data</button>
-    </section>
+      <section class="settings-section">
+        <h2>Settings</h2>
+        <div class="setting-item">
+          <label>
+            <input type="checkbox" id="fuzzyMatching" checked />
+            <span>Enable Fuzzy Matching</span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <label>
+            <input type="checkbox" id="partialMatching" checked />
+            <span>Enable Partial Matching</span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <label>
+            <input type="checkbox" id="aiEnabled" />
+            <span>Enable AI Answering</span>
+          </label>
+        </div>
+        <div class="setting-item slider-item">
+          <label>
+            <span>Minimum Confidence</span>
+            <div class="slider-container">
+              <input
+                type="range"
+                id="minConfidence"
+                min="0"
+                max="100"
+                value="50"
+                step="5"
+              />
+              <span id="confidenceValue">50%</span>
+            </div>
+          </label>
+        </div>
+      </section>
 
-    <footer>
-      <p class="version">v1.2</p>
-    </footer>
-  </div>
+      <section class="actions-section">
+        <button id="exportBtn" class="btn btn-secondary">Export Data</button>
+        <button id="clearBtn" class="btn btn-danger">Clear All Data</button>
+      </section>
 
-  <script type="module" src="popup.js"></script>
-</body>
+      <footer>
+        <p class="version">v1.2</p>
+      </footer>
+    </div>
 
+    <script type="module" src="popup.js"></script>
+  </body>
 </html>
