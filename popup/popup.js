@@ -19,6 +19,8 @@ const minConfidenceEl = document.getElementById('minConfidence');
 const confidenceValueEl = document.getElementById('confidenceValue');
 const exportBtn = document.getElementById('exportBtn');
 const clearBtn = document.getElementById('clearBtn');
+const aiEnabledEl = document.getElementById('aiEnabled');
+const aiProxyUrlEl = document.getElementById('aiProxyUrl');
 
 // Initialize
 init();
@@ -60,6 +62,9 @@ function setupEventListeners() {
         confidenceValueEl.textContent = `${minConfidenceEl.value}%`;
         saveSettings();
     });
+
+    aiEnabledEl.addEventListener('change', saveSettings);
+    aiProxyUrlEl.addEventListener('change', saveSettings);
 
     exportBtn.addEventListener('click', handleExport);
     clearBtn.addEventListener('click', handleClear);
@@ -156,6 +161,9 @@ async function loadSettings() {
             partialMatchingEl.checked = settings.partialMatchingEnabled !== false;
             minConfidenceEl.value = (settings.minConfidence || 0.5) * 100;
             confidenceValueEl.textContent = `${minConfidenceEl.value}%`;
+
+            aiEnabledEl.checked = settings.aiEnabled === true;
+            aiProxyUrlEl.value = settings.aiProxyUrl || 'http://localhost:3000/api/query';
         }
     } catch (error) {
         console.error('Failed to load settings', error);
@@ -166,7 +174,9 @@ async function saveSettings() {
     const settings = {
         fuzzyMatchingEnabled: fuzzyMatchingEl.checked,
         partialMatchingEnabled: partialMatchingEl.checked,
-        minConfidence: parseInt(minConfidenceEl.value) / 100
+        minConfidence: parseInt(minConfidenceEl.value) / 100,
+        aiEnabled: aiEnabledEl.checked,
+        aiProxyUrl: aiProxyUrlEl.value
     };
 
     try {

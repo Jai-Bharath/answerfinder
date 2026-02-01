@@ -77,7 +77,17 @@ export function handleMessage(message, sender, sendResponse) {
 async function handleQueryAnswer(payload, requestId) {
     console.log('[MessageHandler] handleQueryAnswer started', { requestId, query: payload.query });
     try {
-        const { query, settings } = payload;
+        const { query } = payload;
+
+        // Use settings from StateManager (source of truth), allow payload override
+        const globalSettings = stateManager.getSettings();
+        const settings = { ...globalSettings, ...payload.settings };
+
+        console.log('[MessageHandler] Processing query with settings:', {
+            aiEnabled: settings.aiEnabled,
+            hasProxy: !!settings.aiProxyUrl
+        });
+
         const result = await matchingEngine.findAnswer(query, settings);
 
         console.log('[MessageHandler] Got result from matching engine', { success: result.success });

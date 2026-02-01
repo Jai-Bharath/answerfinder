@@ -199,7 +199,7 @@ class OverlayManager {
 
     if (result.success && result.match) {
       const { question, matchType, confidence, explanation } = result.match;
-      const confidenceLevel = this.getConfidenceLevel(confidence);
+      const confidenceLevel = this.getConfidenceLevel(confidence, matchType);
 
       overlay.innerHTML = `
         <div class="answerfinder-header">
@@ -212,12 +212,19 @@ class OverlayManager {
           <div class="answerfinder-answer">
             ${this.escapeHtml(question.original.answer)}
           </div>
+          ${matchType === 'ai' && explanation ? `
+          <div class="answerfinder-reasoning">
+            <strong>Reasoning:</strong>
+            ${this.escapeHtml(explanation)}
+          </div>
+          ` : `
           <div class="answerfinder-meta">
             <small>${explanation}</small>
           </div>
           <div class="answerfinder-question">
             <small><strong>Matched question:</strong> ${this.escapeHtml(question.original.question)}</small>
           </div>
+          `}
         </div>
         <div class="answerfinder-footer">
           <button class="answerfinder-copy" title="Copy answer">Copy</button>
@@ -344,7 +351,8 @@ class OverlayManager {
    * @param {number} confidence - Confidence score
    * @returns {string} Level (high, medium, low, none)
    */
-  getConfidenceLevel(confidence) {
+  getConfidenceLevel(confidence, matchType) {
+    if (matchType === 'ai') return 'ai';
     if (confidence >= 0.85) return 'high';
     if (confidence >= 0.60) return 'medium';
     if (confidence >= 0.30) return 'low';
@@ -361,7 +369,8 @@ class OverlayManager {
       high: '✓ High Confidence',
       medium: '⚠ Medium Confidence',
       low: '⚠ Low Confidence',
-      none: '✗ No Match'
+      none: '✗ No Match',
+      ai: '🤖 AI-Generated'
     };
     return badges[level] || 'Unknown';
   }
@@ -589,6 +598,27 @@ style.textContent = `
   @keyframes answerfinder-progress {
     from { width: 100%; }
     to { width: 0%; }
+  }
+  .answerfinder-badge-ai {
+    background: #4A90E2;
+    color: white;
+  }
+  
+  .answerfinder-reasoning {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #E0E0E0;
+    font-size: 13px;
+    color: #444;
+    background: #fcfcfc;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  .answerfinder-reasoning strong {
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 4px;
   }
 `;
 document.head.appendChild(style);
