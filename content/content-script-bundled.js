@@ -76,8 +76,12 @@ class OverlayManager {
     this.overlay = null;
     this.isVisible = false;
     this.autoHideTimer = null;
-    this.autoHideRemaining = 7000;
+    this.autoHideRemaining = 5000; // 5 seconds
     this.autoHideStartTime = 0;
+
+    // Bind methods
+    this.boundHandleOutsideClick = this.handleOutsideClick.bind(this);
+    this.boundHandleEscKey = this.handleEscKey.bind(this);
   }
 
   /**
@@ -85,7 +89,7 @@ class OverlayManager {
    */
   startAutoHideTimer() {
     this.stopAutoHideTimer();
-    this.autoHideRemaining = 7000;
+    this.autoHideRemaining = 5000;
 
     // Set animation
     if (this.overlay) {
@@ -94,7 +98,7 @@ class OverlayManager {
         // Reset animation by triggering reflow
         progressBar.style.animation = 'none';
         progressBar.offsetHeight; /* trigger reflow */
-        progressBar.style.animation = 'answerfinder-progress 7s linear forwards';
+        progressBar.style.animation = 'answerfinder-progress 5s linear forwards';
       }
     }
 
@@ -138,6 +142,11 @@ class OverlayManager {
    * Resume auto-hide timer
    */
   resumeAutoHideTimer() {
+    if (this.autoHideRemaining <= 0) {
+      this.hideOverlay();
+      return;
+    }
+
     if (this.autoHideRemaining > 0 && !this.autoHideTimer) {
       this.autoHideStartTime = Date.now();
       this.autoHideTimer = setTimeout(() => this.hideOverlay(), this.autoHideRemaining);
