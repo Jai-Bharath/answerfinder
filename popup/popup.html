@@ -9,21 +9,112 @@
 
   <body>
     <div class="container">
+      <!-- Header -->
       <header>
-        <h1>AnswerFinder</h1>
-        <p class="subtitle">Intelligent Q&A Lookup</p>
+        <div class="logo">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="M21 21l-4.35-4.35" />
+            <path d="M11 8v6M8 11h6" />
+          </svg>
+          <div class="logo-text">
+            <h1>AnswerFinder</h1>
+            <span class="tagline">Instant Q&A Lookup</span>
+          </div>
+        </div>
       </header>
 
-      <section class="upload-section">
-        <h2>Upload Q&A File</h2>
-        <p class="section-desc">
-          Upload your questions & answers in JSON or TXT format
-        </p>
-        <div class="upload-area">
-          <input type="file" id="fileInput" accept=".txt,.json" hidden />
-          <button id="uploadBtn" class="btn btn-primary">Choose File</button>
-          <p id="fileName" class="file-name"></p>
+      <!-- AI Feature Card - Prominent -->
+      <section class="ai-card">
+        <div class="ai-card-header">
+          <div class="ai-icon">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"
+              />
+              <circle cx="8" cy="14" r="1.5" fill="currentColor" />
+              <circle cx="16" cy="14" r="1.5" fill="currentColor" />
+            </svg>
+          </div>
+          <div class="ai-info">
+            <h3>AI Assistant</h3>
+            <p>Powered by Llama 3.3 70B</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="aiEnabled" />
+            <span class="toggle-slider"></span>
+          </label>
         </div>
+        <div class="ai-card-body">
+          <p class="ai-description">
+            When no match is found in your database, AI generates intelligent
+            answers instantly.
+          </p>
+          <div class="ai-features">
+            <span class="ai-badge">Ultra-fast</span>
+            <span class="ai-badge">Privacy-first</span>
+            <span class="ai-badge">100 queries/day</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Upload Section -->
+      <section class="upload-section">
+        <div class="section-header">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="17,8 12,3 7,8" />
+            <line x1="12" y1="3" x2="12" y2="15" />
+          </svg>
+          <h2>Upload Q&A Database</h2>
+        </div>
+        <div class="upload-area" id="dropZone">
+          <input type="file" id="fileInput" accept=".txt,.json" hidden />
+          <div class="upload-content">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+              />
+              <polyline points="14,2 14,8 20,8" />
+              <line x1="12" y1="18" x2="12" y2="12" />
+              <line x1="9" y1="15" x2="15" y2="15" />
+            </svg>
+            <p class="upload-text">
+              Drop file here or
+              <button id="uploadBtn" class="link-btn">browse</button>
+            </p>
+            <span class="upload-hint">Supports JSON and TXT formats</span>
+          </div>
+        </div>
+        <p id="fileName" class="file-name"></p>
         <div id="uploadProgress" class="progress" hidden>
           <div class="progress-bar"></div>
           <p class="progress-text">Processing...</p>
@@ -31,40 +122,76 @@
         <div id="uploadResult" class="result" hidden></div>
       </section>
 
+      <!-- Stats Section -->
       <section class="stats-section">
-        <h2>Statistics</h2>
-        <div class="stats-grid">
-          <div class="stat-item">
-            <div class="stat-value" id="totalQuestions">0</div>
-            <div class="stat-label">Questions Loaded</div>
+        <div class="section-header">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M18 20V10" />
+            <path d="M12 20V4" />
+            <path d="M6 20v-6" />
+          </svg>
+          <h2>Database Status</h2>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card">
+            <span class="stat-value" id="totalQuestions">0</span>
+            <span class="stat-label">Questions</span>
           </div>
-          <div class="stat-item">
-            <div class="stat-value" id="cacheSize">0</div>
-            <div class="stat-label">Cache Entries</div>
+          <div class="stat-card">
+            <span class="stat-value" id="cacheSize">0</span>
+            <span class="stat-label">Cached</span>
           </div>
         </div>
-        <div class="meta-info">
-          <p id="lastImport">No data loaded</p>
-        </div>
+        <p id="lastImport" class="last-import">No data loaded yet</p>
       </section>
 
-      <section class="settings-section">
-        <h2>Settings</h2>
-        <div class="setting-item">
-          <label>
-            <input type="checkbox" id="aiEnabled" />
-            <span>Enable AI Answering</span>
-          </label>
-        </div>
-      </section>
-
+      <!-- Actions -->
       <section class="actions-section">
-        <button id="exportBtn" class="btn btn-secondary">Export Data</button>
-        <button id="clearBtn" class="btn btn-danger">Clear All Data</button>
+        <button id="exportBtn" class="btn btn-outline">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7,10 12,15 17,10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Export
+        </button>
+        <button id="clearBtn" class="btn btn-outline btn-danger">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <polyline points="3,6 5,6 21,6" />
+            <path
+              d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+            />
+          </svg>
+          Clear Data
+        </button>
       </section>
 
+      <!-- Footer -->
       <footer>
-        <p class="version">v1.2</p>
+        <span>AnswerFinder v1.2</span>
+        <span class="dot">•</span>
+        <span>Right-click text to search</span>
       </footer>
     </div>
 
