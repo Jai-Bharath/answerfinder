@@ -21,20 +21,20 @@ body {
 }
 
 .container {
-  padding: 12px;
+  padding: 10px;
 }
 
 /* ===== Header ===== */
 header {
-  margin-bottom: 10px;
-  padding-bottom: 10px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .logo svg {
@@ -42,10 +42,10 @@ header {
 }
 
 .logo-text h1 {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: #ffffff;
-  letter-spacing: -0.4px;
+  letter-spacing: -0.3px;
 }
 
 .tagline {
@@ -58,17 +58,16 @@ header {
 section {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 10px;
-  padding: 12px;
-  margin-bottom: 8px;
-  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 6px;
 }
 
 .section-header {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 10px;
+  gap: 5px;
+  margin-bottom: 8px;
 }
 
 .section-header svg {
@@ -87,7 +86,7 @@ section {
 .ai-card {
   background: rgba(139, 92, 246, 0.03);
   border: 1px solid rgba(139, 92, 246, 0.12);
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 0;
   overflow: hidden;
   position: relative;
@@ -100,17 +99,17 @@ section {
 .ai-card-header {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
+  gap: 8px;
+  padding: 10px 12px;
   background: rgba(139, 92, 246, 0.04);
   border-bottom: 1px solid rgba(139, 92, 246, 0.08);
 }
 
 .ai-icon {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   background: #7c3aed;
-  border-radius: 8px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,27 +124,52 @@ section {
 }
 
 .ai-info h3 {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 600;
   margin-bottom: 2px;
   color: #ffffff;
+  line-height: 1;
 }
 
 .ai-info p {
-  font-size: 11px;
+  font-size: 10px;
   color: #9ca3af;
   font-weight: 500;
+  margin: 0;
+  line-height: 1;
+}
+
+.ai-info .model-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.ai-info .powered-by {
+  color: #6b7280;
+  font-size: 9px;
+  font-weight: 400;
+}
+
+.ai-info .model-name {
+  background: linear-gradient(135deg, #a78bfa, #c4b5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.1px;
 }
 
 .ai-card-body {
-  padding: 12px 14px;
+  padding: 10px 12px;
 }
 
 .ai-description {
-  font-size: 12px;
+  font-size: 11px;
   color: #9ca3af;
-  margin-bottom: 10px;
-  line-height: 1.5;
+  margin-bottom: 8px;
+  line-height: 1.4;
 }
 
 .ai-features {
@@ -155,22 +179,22 @@ section {
 }
 
 .ai-badge {
-  font-size: 10px;
-  padding: 5px 10px;
+  font-size: 9px;
+  padding: 3px 8px;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 100px;
   color: #9ca3af;
   font-weight: 500;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
 }
 
 /* ===== Toggle Switch ===== */
 .toggle {
   position: relative;
   display: inline-block;
-  width: 48px;
-  height: 26px;
+  width: 40px;
+  height: 22px;
   flex-shrink: 0;
 }
 
@@ -188,20 +212,20 @@ section {
   right: 0;
   bottom: 0;
   background-color: #27272a;
-  transition: 0.3s ease;
-  border-radius: 26px;
+  transition: 0.2s ease;
+  border-radius: 22px;
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .toggle-slider:before {
   position: absolute;
   content: "";
-  height: 20px;
-  width: 20px;
+  height: 16px;
+  width: 16px;
   left: 2px;
   bottom: 2px;
   background-color: #52525b;
-  transition: 0.3s ease;
+  transition: 0.2s ease;
   border-radius: 50%;
 }
 
@@ -211,19 +235,19 @@ section {
 }
 
 .toggle input:checked + .toggle-slider:before {
-  transform: translateX(22px);
+  transform: translateX(18px);
   background-color: #ffffff;
 }
 
 /* ===== Upload Area ===== */
 .upload-area {
-  border: 2px dashed rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  padding: 14px 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 12px 10px;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   cursor: pointer;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.15);
 }
 
 .upload-area:hover {
@@ -238,13 +262,13 @@ section {
 
 .upload-content svg {
   color: #4b5563;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .upload-text {
-  font-size: 13px;
+  font-size: 12px;
   color: #6b7280;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .link-btn {
@@ -254,7 +278,7 @@ section {
   font-weight: 500;
   cursor: pointer;
   text-decoration: none;
-  font-size: 13px;
+  font-size: 12px;
   transition: color 0.2s;
 }
 
@@ -269,18 +293,18 @@ section {
 }
 
 .file-name {
-  margin-top: 8px;
-  font-size: 11px;
+  margin-top: 6px;
+  font-size: 10px;
   color: #6b7280;
   text-align: center;
 }
 
 /* ===== Progress ===== */
 .progress {
-  margin-top: 10px;
-  padding: 10px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
+  margin-top: 8px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -304,18 +328,18 @@ section {
 }
 
 .progress-text {
-  margin-top: 8px;
+  margin-top: 6px;
   text-align: center;
-  font-size: 11px;
+  font-size: 10px;
   color: #6b7280;
 }
 
 /* ===== Result Messages ===== */
 .result {
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 12px;
+  margin-top: 8px;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 11px;
   text-align: center;
   font-weight: 500;
 }
@@ -336,14 +360,14 @@ section {
 .stats-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 8px;
+  gap: 6px;
+  margin-bottom: 6px;
 }
 
 .stat-card {
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
-  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  padding: 8px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.06);
   transition: all 0.2s;
@@ -356,33 +380,32 @@ section {
 
 .stat-value {
   display: block;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: #ffffff;
-  line-height: 1.1;
-  letter-spacing: -0.5px;
+  line-height: 1;
 }
 
 .stat-label {
-  font-size: 10px;
+  font-size: 9px;
   color: #6b7280;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
-  margin-top: 4px;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
 }
 
 .last-import {
-  font-size: 10px;
+  font-size: 9px;
   color: #4b5563;
   text-align: center;
-  padding-top: 8px;
+  padding-top: 6px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* ===== Actions ===== */
 .actions-section {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   background: transparent;
   border: none;
   padding: 0;
@@ -393,11 +416,11 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  padding: 8px 12px;
-  font-size: 11px;
+  gap: 4px;
+  padding: 6px 10px;
+  font-size: 10px;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -436,15 +459,14 @@ footer {
   justify-content: center;
   gap: 6px;
   padding-top: 8px;
+  margin-top: 2px;
   font-size: 10px;
-  color: #4b5563;
+  color: #52525b;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
 }
 
 .dot {
-  width: 3px;
-  height: 3px;
-  background: #374151;
-  border-radius: 50%;
+  color: #3f3f46;
 }
 
 /* ===== Utility ===== */

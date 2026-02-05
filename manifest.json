@@ -1,29 +1,18 @@
 {
   "manifest_version": 3,
   "name": "AnswerFinder - Intelligent Q&A Lookup",
-  "version": "1.2",
+  "version": "2.0",
   "description": "Production-grade offline answer engine with intelligent multi-tier matching for Q&A pairs",
-  "permissions": [
-    "contextMenus",
-    "storage",
-    "activeTab",
-    "scripting"
-  ],
-  "host_permissions": [
-    "<all_urls>"
-  ],
+  "permissions": ["contextMenus", "storage", "activeTab", "scripting"],
+  "host_permissions": ["<all_urls>"],
   "background": {
     "service_worker": "background/service-worker.js",
     "type": "module"
   },
   "content_scripts": [
     {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "content/content-script-bundled.js"
-      ],
+      "matches": ["<all_urls>"],
+      "js": ["content/content-script-bundled.js"],
       "run_at": "document_idle",
       "all_frames": false
     }
@@ -45,12 +34,8 @@
   },
   "web_accessible_resources": [
     {
-      "resources": [
-        "ui/*"
-      ],
-      "matches": [
-        "<all_urls>"
-      ]
+      "resources": ["ui/*"],
+      "matches": ["<all_urls>"]
     }
   ],
   "content_security_policy": {

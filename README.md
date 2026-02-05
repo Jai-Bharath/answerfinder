@@ -6,7 +6,7 @@
 
 **Lightning-Fast Q&A Chrome Extension with AI Support**
 
-[![Version](https://img.shields.io/badge/version-1.2-blue.svg)](manifest.json)
+[![Version](https://img.shields.io/badge/version-2.0-blue.svg)](manifest.json)
 [![Platform](https://img.shields.io/badge/platform-Chrome-orange.svg)](https://developer.chrome.com/docs/extensions/mv3/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 

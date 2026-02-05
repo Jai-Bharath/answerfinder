@@ -4,7 +4,7 @@
  * Combines: selection-handler.js, overlay-manager.js, content-script.js
  */
 
-console.log('[ContentScript] Content script loaded');
+console.log("[ContentScript] Content script loaded");
 
 // ============================================================================
 // SELECTION HANDLER
@@ -31,15 +31,18 @@ function getSelectedText() {
  */
 function validateSelection(text) {
   if (!text || text.length === 0) {
-    return { valid: false, error: 'No text selected' };
+    return { valid: false, error: "No text selected" };
   }
 
   if (text.length < 3) {
-    return { valid: false, error: 'Selected text is too short' };
+    return { valid: false, error: "Selected text is too short" };
   }
 
   if (text.length > 500) {
-    return { valid: false, error: 'Selected text is too long (max 500 characters)' };
+    return {
+      valid: false,
+      error: "Selected text is too long (max 500 characters)",
+    };
   }
 
   return { valid: true, error: null };
@@ -60,7 +63,7 @@ function getSelectionPosition() {
 
   return {
     x: rect.left + window.scrollX,
-    y: rect.bottom + window.scrollY
+    y: rect.bottom + window.scrollY,
   };
 }
 
@@ -93,12 +96,15 @@ class OverlayManager {
 
     // Set animation
     if (this.overlay) {
-      const progressBar = this.overlay.querySelector('.answerfinder-progress-bar');
+      const progressBar = this.overlay.querySelector(
+        ".answerfinder-progress-bar",
+      );
       if (progressBar) {
         // Reset animation by triggering reflow
-        progressBar.style.animation = 'none';
+        progressBar.style.animation = "none";
         progressBar.offsetHeight; /* trigger reflow */
-        progressBar.style.animation = 'answerfinder-progress 5s linear forwards';
+        progressBar.style.animation =
+          "answerfinder-progress 5s linear forwards";
       }
     }
 
@@ -130,9 +136,11 @@ class OverlayManager {
 
       // Pause animation
       if (this.overlay) {
-        const progressBar = this.overlay.querySelector('.answerfinder-progress-bar');
+        const progressBar = this.overlay.querySelector(
+          ".answerfinder-progress-bar",
+        );
         if (progressBar) {
-          progressBar.style.animationPlayState = 'paused';
+          progressBar.style.animationPlayState = "paused";
         }
       }
     }
@@ -149,13 +157,18 @@ class OverlayManager {
 
     if (this.autoHideRemaining > 0 && !this.autoHideTimer) {
       this.autoHideStartTime = Date.now();
-      this.autoHideTimer = setTimeout(() => this.hideOverlay(), this.autoHideRemaining);
+      this.autoHideTimer = setTimeout(
+        () => this.hideOverlay(),
+        this.autoHideRemaining,
+      );
 
       // Resume animation
       if (this.overlay) {
-        const progressBar = this.overlay.querySelector('.answerfinder-progress-bar');
+        const progressBar = this.overlay.querySelector(
+          ".answerfinder-progress-bar",
+        );
         if (progressBar) {
-          progressBar.style.animationPlayState = 'running';
+          progressBar.style.animationPlayState = "running";
         }
       }
     }
@@ -193,9 +206,9 @@ class OverlayManager {
    * @returns {HTMLElement} Overlay element
    */
   createOverlay(result) {
-    const overlay = document.createElement('div');
-    overlay.id = 'answerfinder-overlay';
-    overlay.className = 'answerfinder-overlay';
+    const overlay = document.createElement("div");
+    overlay.id = "answerfinder-overlay";
+    overlay.className = "answerfinder-overlay";
 
     if (result.success && result.match) {
       const { question, matchType, confidence, explanation } = result.match;
@@ -212,19 +225,23 @@ class OverlayManager {
           <div class="answerfinder-answer">
             ${this.escapeHtml(question.original.answer)}
           </div>
-          ${matchType === 'ai' && explanation ? `
+          ${
+            matchType === "ai" && explanation
+              ? `
           <div class="answerfinder-reasoning">
             <strong>Reasoning:</strong>
             ${this.escapeHtml(explanation)}
           </div>
-          ` : `
+          `
+              : `
           <div class="answerfinder-meta">
             <small>${explanation}</small>
           </div>
           <div class="answerfinder-question">
             <small><strong>Matched question:</strong> ${this.escapeHtml(question.original.question)}</small>
           </div>
-          `}
+          `
+          }
         </div>
         <div class="answerfinder-footer">
           <button class="answerfinder-copy" title="Copy answer">Copy</button>
@@ -239,7 +256,7 @@ class OverlayManager {
         </div>
         <div class="answerfinder-content">
           <div class="answerfinder-message">
-            ${result.message || 'No answer found for your query.'}
+            ${result.message || "No answer found for your query."}
           </div>
         </div>
         <div class="answerfinder-progress-bar"></div>
@@ -256,10 +273,10 @@ class OverlayManager {
    */
   positionOverlay(overlay, position) {
     // Sidebar mode: Reset any manual positioning and let CSS handle it
-    overlay.style.left = '';
-    overlay.style.top = '';
-    overlay.style.right = '20px';
-    overlay.style.bottom = '';
+    overlay.style.left = "";
+    overlay.style.top = "";
+    overlay.style.right = "20px";
+    overlay.style.bottom = "";
   }
 
   /**
@@ -269,26 +286,30 @@ class OverlayManager {
     if (!this.overlay) return;
 
     // Close button
-    const closeBtn = this.overlay.querySelector('.answerfinder-close');
+    const closeBtn = this.overlay.querySelector(".answerfinder-close");
     if (closeBtn) {
-      closeBtn.addEventListener('click', () => this.hideOverlay());
+      closeBtn.addEventListener("click", () => this.hideOverlay());
     }
 
     // Copy button
-    const copyBtn = this.overlay.querySelector('.answerfinder-copy');
+    const copyBtn = this.overlay.querySelector(".answerfinder-copy");
     if (copyBtn) {
-      copyBtn.addEventListener('click', () => this.copyAnswer());
+      copyBtn.addEventListener("click", () => this.copyAnswer());
     }
 
     // Click outside to close
-    document.addEventListener('click', this.boundHandleOutsideClick);
+    document.addEventListener("click", this.boundHandleOutsideClick);
 
     // ESC key to close
-    document.addEventListener('keydown', this.boundHandleEscKey);
+    document.addEventListener("keydown", this.boundHandleEscKey);
 
     // Pause/Resume on hover
-    this.overlay.addEventListener('mouseenter', () => this.pauseAutoHideTimer());
-    this.overlay.addEventListener('mouseleave', () => this.resumeAutoHideTimer());
+    this.overlay.addEventListener("mouseenter", () =>
+      this.pauseAutoHideTimer(),
+    );
+    this.overlay.addEventListener("mouseleave", () =>
+      this.resumeAutoHideTimer(),
+    );
   }
 
   /**
@@ -306,7 +327,7 @@ class OverlayManager {
    * @param {Event} event - Keyboard event
    */
   handleEscKey(event) {
-    if (event.key === 'Escape') {
+    if (event.key === "Escape") {
       this.hideOverlay();
     }
   }
@@ -315,15 +336,15 @@ class OverlayManager {
    * Copy answer to clipboard
    */
   copyAnswer() {
-    const answerElement = this.overlay.querySelector('.answerfinder-answer');
+    const answerElement = this.overlay.querySelector(".answerfinder-answer");
     if (answerElement) {
       const text = answerElement.textContent;
       navigator.clipboard.writeText(text).then(() => {
-        const copyBtn = this.overlay.querySelector('.answerfinder-copy');
+        const copyBtn = this.overlay.querySelector(".answerfinder-copy");
         if (copyBtn) {
-          copyBtn.textContent = 'Copied!';
+          copyBtn.textContent = "Copied!";
           setTimeout(() => {
-            copyBtn.textContent = 'Copy';
+            copyBtn.textContent = "Copy";
           }, 2000);
         }
       });
@@ -341,8 +362,8 @@ class OverlayManager {
       this.isVisible = false;
 
       // Remove event listeners
-      document.removeEventListener('click', this.boundHandleOutsideClick);
-      document.removeEventListener('keydown', this.boundHandleEscKey);
+      document.removeEventListener("click", this.boundHandleOutsideClick);
+      document.removeEventListener("keydown", this.boundHandleEscKey);
     }
   }
 
@@ -352,11 +373,11 @@ class OverlayManager {
    * @returns {string} Level (high, medium, low, none)
    */
   getConfidenceLevel(confidence, matchType) {
-    if (matchType === 'ai') return 'ai';
-    if (confidence >= 0.85) return 'high';
-    if (confidence >= 0.60) return 'medium';
-    if (confidence >= 0.30) return 'low';
-    return 'none';
+    if (matchType === "ai") return "ai";
+    if (confidence >= 0.85) return "high";
+    if (confidence >= 0.6) return "medium";
+    if (confidence >= 0.3) return "low";
+    return "none";
   }
 
   /**
@@ -366,13 +387,13 @@ class OverlayManager {
    */
   getConfidenceBadgeText(level) {
     const badges = {
-      high: '✓ High Confidence',
-      medium: '⚠ Medium Confidence',
-      low: '⚠ Low Confidence',
-      none: '✗ No Match',
-      ai: '🤖 AI-Generated'
+      high: "✓ High Confidence",
+      medium: "⚠ Medium Confidence",
+      low: "⚠ Low Confidence",
+      none: "✗ No Match",
+      ai: "🤖 AI-Generated",
     };
-    return badges[level] || 'Unknown';
+    return badges[level] || "Unknown";
   }
 
   /**
@@ -381,7 +402,7 @@ class OverlayManager {
    * @returns {string} Escaped text
    */
   escapeHtml(text) {
-    const div = document.createElement('div');
+    const div = document.createElement("div");
     div.textContent = text;
     return div.innerHTML;
   }
@@ -396,8 +417,8 @@ const overlayManager = new OverlayManager();
 
 // Listen for messages from background script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  console.log('[ContentScript] Received message:', message.type);
-  if (message.type === 'SHOW_ANSWER_OVERLAY') {
+  console.log("[ContentScript] Received message:", message.type);
+  if (message.type === "SHOW_ANSWER_OVERLAY") {
     handleShowAnswerOverlay(message.payload);
   }
 });
@@ -410,37 +431,49 @@ async function handleShowAnswerOverlay(payload) {
   const { query } = payload;
 
   // Get selection position
-  const position = getSelectionPosition() || { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  const position = getSelectionPosition() || {
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+  };
 
   // Show loading state
-  overlayManager.showOverlay({
-    success: false,
-    message: 'Searching for answer...'
-  }, position);
+  overlayManager.showOverlay(
+    {
+      success: false,
+      message: "Searching for answer...",
+    },
+    position,
+  );
 
   try {
     // Send query to background script
     const response = await chrome.runtime.sendMessage({
-      type: 'QUERY_ANSWER',
+      type: "QUERY_ANSWER",
       payload: { query },
-      requestId: Date.now().toString()
+      requestId: Date.now().toString(),
     });
 
     // Show result
-    if (response.type === 'RESPONSE') {
+    if (response.type === "RESPONSE") {
       overlayManager.showOverlay(response.payload, position);
-    } else if (response.type === 'ERROR') {
-      overlayManager.showOverlay({
-        success: false,
-        message: response.error.error?.message || 'An error occurred'
-      }, position);
+    } else if (response.type === "ERROR") {
+      overlayManager.showOverlay(
+        {
+          success: false,
+          message: response.error.error?.message || "An error occurred",
+        },
+        position,
+      );
     }
   } catch (error) {
-    console.error('[ContentScript] Error querying answer', error);
-    overlayManager.showOverlay({
-      success: false,
-      message: 'Failed to search for answer. Please try again.'
-    }, position);
+    console.error("[ContentScript] Error querying answer", error);
+    overlayManager.showOverlay(
+      {
+        success: false,
+        message: "Failed to search for answer. Please try again.",
+      },
+      position,
+    );
   }
 }
 
@@ -449,24 +482,25 @@ async function handleShowAnswerOverlay(payload) {
 // ============================================================================
 
 // Add CSS for overlay
-const style = document.createElement('style');
+const style = document.createElement("style");
 style.textContent = `
   .answerfinder-overlay {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 16px;
+    right: 16px;
     z-index: 2147483647;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-    width: 350px;
+    background: #0c0c0f;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    width: 320px;
     max-height: 80vh;
     overflow-y: auto;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.5;
-    animation: slideInRight 0.3s ease-out;
+    color: #e4e4e7;
+    animation: slideInRight 0.25s ease-out;
   }
 
   @keyframes slideInRight {
@@ -478,119 +512,124 @@ style.textContent = `
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 16px;
-    border-bottom: 1px solid #eee;
-    background: #f8f9fa;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.02);
     position: sticky;
     top: 0;
   }
   
   .answerfinder-badge {
-    padding: 4px 12px;
+    padding: 4px 10px;
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
   }
   
   .answerfinder-badge-high {
-    background: #d4edda;
-    color: #155724;
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
   }
   
   .answerfinder-badge-medium {
-    background: #fff3cd;
-    color: #856404;
+    background: rgba(234, 179, 8, 0.15);
+    color: #fbbf24;
   }
   
   .answerfinder-badge-low {
-    background: #f8d7da;
-    color: #721c24;
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
   }
   
   .answerfinder-badge-none {
-    background: #e2e3e5;
-    color: #383d41;
+    background: rgba(255, 255, 255, 0.05);
+    color: #6b7280;
   }
   
   .answerfinder-close {
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 18px;
     cursor: pointer;
-    color: #666;
+    color: #6b7280;
     padding: 0;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     line-height: 1;
+    transition: color 0.2s;
   }
   
   .answerfinder-close:hover {
-    color: #000;
+    color: #ffffff;
   }
   
   .answerfinder-content {
-    padding: 16px;
+    padding: 12px;
   }
   
   .answerfinder-answer {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     white-space: pre-wrap;
     word-wrap: break-word;
-    font-size: 15px;
-    color: #212529;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 500;
   }
   
   .answerfinder-meta {
-    margin-bottom: 12px;
-    color: #666;
+    margin-bottom: 10px;
+    color: #6b7280;
     font-style: italic;
+    font-size: 11px;
   }
   
   .answerfinder-question {
-    padding: 10px;
-    background: #f1f3f5;
+    padding: 8px 10px;
+    background: rgba(255, 255, 255, 0.03);
     border-radius: 6px;
-    color: #495057;
-    border-left: 3px solid #dee2e6;
+    color: #9ca3af;
+    border-left: 2px solid rgba(139, 92, 246, 0.5);
+    font-size: 12px;
   }
   
   .answerfinder-message {
-    color: #666;
+    color: #6b7280;
     text-align: center;
-    padding: 20px 0;
+    padding: 16px 0;
+    font-size: 12px;
   }
   
   .answerfinder-footer {
-    padding: 12px 16px;
-    border-top: 1px solid #eee;
+    padding: 10px 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
     text-align: right;
-    background: #f8f9fa;
+    background: rgba(255, 255, 255, 0.02);
     position: sticky;
     bottom: 0;
   }
   
   .answerfinder-copy {
-    background: #007bff;
+    background: #7c3aed;
     color: white;
     border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
+    padding: 6px 14px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 11px;
+    font-weight: 600;
     transition: background 0.2s;
   }
   
   .answerfinder-copy:hover {
-    background: #0056b3;
+    background: #6d28d9;
   }
 
   .answerfinder-progress-bar {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 4px;
-    background-color: #007bff;
+    height: 2px;
+    background: #7c3aed;
     width: 100%;
     transform-origin: left;
   }
@@ -599,26 +638,29 @@ style.textContent = `
     from { width: 100%; }
     to { width: 0%; }
   }
+  
   .answerfinder-badge-ai {
-    background: #4A90E2;
-    color: white;
+    background: rgba(139, 92, 246, 0.15);
+    color: #a78bfa;
   }
   
   .answerfinder-reasoning {
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid #E0E0E0;
-    font-size: 13px;
-    color: #444;
-    background: #fcfcfc;
-    padding: 10px;
-    border-radius: 4px;
+    margin-top: 10px;
+    padding: 8px 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    font-size: 11px;
+    color: #9ca3af;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 6px;
   }
 
   .answerfinder-reasoning strong {
-    color: #2c3e50;
+    color: #a78bfa;
     display: block;
     margin-bottom: 4px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 `;
 document.head.appendChild(style);
