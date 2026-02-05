@@ -9,12 +9,12 @@
  * @requires lib/utils/error-handler
  */
 
-import { stateManager } from './state-manager.js';
-import { matchingEngine } from '../lib/matching/matching-engine.js';
-import { txtParser } from '../lib/parsers/txt-parser.js';
-import { jsonParser } from '../lib/parsers/json-parser.js';
-import { MESSAGE_TYPES } from '../lib/utils/constants.js';
-import { handleError } from '../lib/utils/error-handler.js';
+import { stateManager } from "./state-manager.js";
+import { matchingEngine } from "../lib/matching/matching-engine.js";
+import { txtParser } from "../lib/parsers/txt-parser.js";
+import { jsonParser } from "../lib/parsers/json-parser.js";
+import { MESSAGE_TYPES } from "../lib/utils/constants.js";
+import { handleError } from "../lib/utils/error-handler.js";
 
 /**
  * Handle incoming messages
@@ -24,48 +24,48 @@ import { handleError } from '../lib/utils/error-handler.js';
  * @returns {boolean} True if async response
  */
 export function handleMessage(message, sender, sendResponse) {
-    const { type, payload, requestId } = message;
+  const { type, payload, requestId } = message;
 
-    console.log(`[MessageHandler] Received message: ${type}`, payload);
+  console.log(`[MessageHandler] Received message: ${type}`, payload);
 
-    // Route to appropriate handler
-    switch (type) {
-        case MESSAGE_TYPES.QUERY_ANSWER:
-            handleQueryAnswer(payload, requestId).then(sendResponse);
-            return true; // Async response
+  // Route to appropriate handler
+  switch (type) {
+    case MESSAGE_TYPES.QUERY_ANSWER:
+      handleQueryAnswer(payload, requestId).then(sendResponse);
+      return true; // Async response
 
-        case MESSAGE_TYPES.UPLOAD_FILE:
-            handleUploadFile(payload, requestId).then(sendResponse);
-            return true; // Async response
+    case MESSAGE_TYPES.UPLOAD_FILE:
+      handleUploadFile(payload, requestId).then(sendResponse);
+      return true; // Async response
 
-        case MESSAGE_TYPES.GET_STATS:
-            handleGetStats(requestId).then(sendResponse);
-            return true; // Async response
+    case MESSAGE_TYPES.GET_STATS:
+      handleGetStats(requestId).then(sendResponse);
+      return true; // Async response
 
-        case MESSAGE_TYPES.GET_SETTINGS:
-            handleGetSettings(requestId).then(sendResponse);
-            return true; // Async response
+    case MESSAGE_TYPES.GET_SETTINGS:
+      handleGetSettings(requestId).then(sendResponse);
+      return true; // Async response
 
-        case MESSAGE_TYPES.UPDATE_SETTINGS:
-            handleUpdateSettings(payload, requestId).then(sendResponse);
-            return true; // Async response
+    case MESSAGE_TYPES.UPDATE_SETTINGS:
+      handleUpdateSettings(payload, requestId).then(sendResponse);
+      return true; // Async response
 
-        case MESSAGE_TYPES.CLEAR_DATA:
-            handleClearData(requestId).then(sendResponse);
-            return true; // Async response
+    case MESSAGE_TYPES.CLEAR_DATA:
+      handleClearData(requestId).then(sendResponse);
+      return true; // Async response
 
-        case MESSAGE_TYPES.EXPORT_DATA:
-            handleExportData(requestId).then(sendResponse);
-            return true; // Async response
+    case MESSAGE_TYPES.EXPORT_DATA:
+      handleExportData(requestId).then(sendResponse);
+      return true; // Async response
 
-        default:
-            sendResponse({
-                type: MESSAGE_TYPES.ERROR,
-                error: { message: `Unknown message type: ${type}` },
-                requestId
-            });
-            return false;
-    }
+    default:
+      sendResponse({
+        type: MESSAGE_TYPES.ERROR,
+        error: { message: `Unknown message type: ${type}` },
+        requestId,
+      });
+      return false;
+  }
 }
 
 /**
@@ -75,36 +75,41 @@ export function handleMessage(message, sender, sendResponse) {
  * @returns {Promise<Object>} Response
  */
 async function handleQueryAnswer(payload, requestId) {
-    console.log('[MessageHandler] handleQueryAnswer started', { requestId, query: payload.query });
-    try {
-        const { query } = payload;
+  console.log("[MessageHandler] handleQueryAnswer started", {
+    requestId,
+    query: payload.query,
+  });
+  try {
+    const { query } = payload;
 
-        // Use settings from StateManager (source of truth), allow payload override
-        const globalSettings = stateManager.getSettings();
-        const settings = { ...globalSettings, ...payload.settings };
+    // Use settings from StateManager (source of truth), allow payload override
+    const globalSettings = stateManager.getSettings();
+    const settings = { ...globalSettings, ...payload.settings };
 
-        console.log('[MessageHandler] Processing query with settings:', {
-            aiEnabled: settings.aiEnabled,
-            hasProxy: !!settings.aiProxyUrl
-        });
+    console.log("[MessageHandler] Processing query with settings:", {
+      aiEnabled: settings.aiEnabled,
+      hasProxy: !!settings.aiProxyUrl,
+    });
 
-        const result = await matchingEngine.findAnswer(query, settings);
+    const result = await matchingEngine.findAnswer(query, settings);
 
-        console.log('[MessageHandler] Got result from matching engine', { success: result.success });
+    console.log("[MessageHandler] Got result from matching engine", {
+      success: result.success,
+    });
 
-        return {
-            type: MESSAGE_TYPES.RESPONSE,
-            payload: result,
-            requestId
-        };
-    } catch (error) {
-        console.error('[MessageHandler] handleQueryAnswer error', error);
-        return {
-            type: MESSAGE_TYPES.ERROR,
-            error: handleError(error, 'handleQueryAnswer'),
-            requestId
-        };
-    }
+    return {
+      type: MESSAGE_TYPES.RESPONSE,
+      payload: result,
+      requestId,
+    };
+  } catch (error) {
+    console.error("[MessageHandler] handleQueryAnswer error", error);
+    return {
+      type: MESSAGE_TYPES.ERROR,
+      error: handleError(error, "handleQueryAnswer"),
+      requestId,
+    };
+  }
 }
 
 /**
@@ -114,64 +119,67 @@ async function handleQueryAnswer(payload, requestId) {
  * @returns {Promise<Object>} Response
  */
 async function handleUploadFile(payload, requestId) {
-    try {
-        const { fileContent, fileName } = payload;
+  try {
+    const { fileContent, fileName } = payload;
 
-        let parser;
-        if (fileName.toLowerCase().endsWith('.json')) {
-            parser = jsonParser;
-        } else {
-            parser = txtParser;
-        }
-
-        // Parse content
-        const { questions, metadata, errors } = await parser.parse(fileContent, fileName);
-
-        // Clear existing data
-        await stateManager.getDBManager().clearAllQuestions();
-
-        // Add questions to database
-        const addResult = await stateManager.getDBManager().addQuestions(questions);
-
-        // Update metadata
-        await stateManager.getDBManager().updateMetadata('import_info', {
-            fileName,
-            timestamp: Date.now(),
-            totalQuestions: questions.length,
-            errors: errors
-        });
-
-        // Clear cache (new data loaded)
-        stateManager.getCache().clear();
-
-        const response = {
-            type: MESSAGE_TYPES.RESPONSE,
-            payload: {
-                success: true,
-                totalQuestions: addResult.count,
-                errors: errors,
-                metadata: metadata
-            },
-            requestId
-        };
-
-        // Persist result for popup persistence (fix for popup closing)
-        await chrome.storage.local.set({
-            uploadResult: {
-                success: true,
-                message: `Successfully loaded ${addResult.count} questions!`,
-                timestamp: Date.now()
-            }
-        });
-
-        return response;
-    } catch (error) {
-        return {
-            type: MESSAGE_TYPES.ERROR,
-            error: handleError(error, 'handleUploadFile'),
-            requestId
-        };
+    let parser;
+    if (fileName.toLowerCase().endsWith(".json")) {
+      parser = jsonParser;
+    } else {
+      parser = txtParser;
     }
+
+    // Parse content
+    const { questions, metadata, errors } = await parser.parse(
+      fileContent,
+      fileName,
+    );
+
+    // Clear existing data
+    await stateManager.getDBManager().clearAllQuestions();
+
+    // Add questions to database
+    const addResult = await stateManager.getDBManager().addQuestions(questions);
+
+    // Update metadata
+    await stateManager.getDBManager().updateMetadata("import_info", {
+      fileName,
+      timestamp: Date.now(),
+      totalQuestions: questions.length,
+      errors: errors,
+    });
+
+    // Clear cache (new data loaded)
+    stateManager.getCache().clear();
+
+    const response = {
+      type: MESSAGE_TYPES.RESPONSE,
+      payload: {
+        success: true,
+        totalQuestions: addResult.count,
+        errors: errors,
+        metadata: metadata,
+      },
+      requestId,
+    };
+
+    // Persist result for popup persistence (fix for popup closing)
+    await chrome.storage.local.set({
+      uploadResult: {
+        success: true,
+        message: `Successfully loaded ${addResult.count} questions!`,
+        timestamp: Date.now(),
+      },
+    });
+
+    return response;
+  } catch (error) {
+    return {
+      type: MESSAGE_TYPES.ERROR,
+      error: handleError(error, "handleUploadFile"),
+      requestId,
+    };
+  }
 }
 
 /**
@@ -180,25 +188,25 @@ async function handleUploadFile(payload, requestId) {
  * @returns {Promise<Object>} Response
  */
 async function handleGetStats(requestId) {
-    try {
-        const stats = await stateManager.getDBManager().getStats();
-        const cacheStats = stateManager.getCache().getStats();
+  try {
+    const stats = await stateManager.getDBManager().getStats();
+    const cacheStats = stateManager.getCache().getStats();
 
-        return {
-            type: MESSAGE_TYPES.RESPONSE,
-            payload: {
-                ...stats,
-                cache: cacheStats
-            },
-            requestId
-        };
-    } catch (error) {
-        return {
-            type: MESSAGE_TYPES.ERROR,
-            error: handleError(error, 'handleGetStats'),
-            requestId
-        };
-    }
+    return {
+      type: MESSAGE_TYPES.RESPONSE,
+      payload: {
+        ...stats,
+        cache: cacheStats,
+      },
+      requestId,
+    };
+  } catch (error) {
+    return {
+      type: MESSAGE_TYPES.ERROR,
+      error: handleError(error, "handleGetStats"),
+      requestId,
+    };
+  }
 }
 
 /**
@@ -207,21 +215,25 @@ async function handleGetStats(requestId) {
  * @returns {Promise<Object>} Response
  */
 async function handleGetSettings(requestId) {
-    try {
-        const settings = stateManager.getSettings();
+  try {
+    // Reload settings from storage to ensure we have latest
+    await stateManager.loadSettings();
+    const settings = stateManager.getSettings();
 
-        return {
-            type: MESSAGE_TYPES.RESPONSE,
-            payload: settings,
-            requestId
-        };
-    } catch (error) {
-        return {
-            type: MESSAGE_TYPES.ERROR,
-            error: handleError(error, 'handleGetSettings'),
-            requestId
-        };
-    }
+    console.log("[MessageHandler] Returning settings", settings);
+
+    return {
+      type: MESSAGE_TYPES.RESPONSE,
+      payload: settings,
+      requestId,
+    };
+  } catch (error) {
+    return {
+      type: MESSAGE_TYPES.ERROR,
+      error: handleError(error, "handleGetSettings"),
+      requestId,
+    };
+  }
 }
 
 /**
@@ -231,21 +243,21 @@ async function handleGetSettings(requestId) {
  * @returns {Promise<Object>} Response
  */
 async function handleUpdateSettings(payload, requestId) {
-    try {
-        await stateManager.updateSettings(payload);
+  try {
+    await stateManager.updateSettings(payload);
 
-        return {
-            type: MESSAGE_TYPES.RESPONSE,
-            payload: { success: true },
-            requestId
-        };
-    } catch (error) {
-        return {
-            type: MESSAGE_TYPES.ERROR,
-            error: handleError(error, 'handleUpdateSettings'),
-            requestId
-        };
-    }
+    return {
+      type: MESSAGE_TYPES.RESPONSE,
+      payload: { success: true },
+      requestId,
+    };
+  } catch (error) {
+    return {
+      type: MESSAGE_TYPES.ERROR,
+      error: handleError(error, "handleUpdateSettings"),
+      requestId,
+    };
+  }
 }
 
 /**
@@ -254,21 +266,21 @@ async function handleUpdateSettings(payload, requestId) {
  * @returns {Promise<Object>} Response
  */
 async function handleClearData(requestId) {
-    try {
-        await stateManager.clearAll();
+  try {
+    await stateManager.clearAll();
 
-        return {
-            type: MESSAGE_TYPES.RESPONSE,
-            payload: { success: true },
-            requestId
-        };
-    } catch (error) {
-        return {
-            type: MESSAGE_TYPES.ERROR,
-            error: handleError(error, 'handleClearData'),
-            requestId
-        };
-    }
+    return {
+      type: MESSAGE_TYPES.RESPONSE,
+      payload: { success: true },
+      requestId,
+    };
+  } catch (error) {
+    return {
+      type: MESSAGE_TYPES.ERROR,
+      error: handleError(error, "handleClearData"),
+      requestId,
+    };
+  }
 }
 
 /**
@@ -277,19 +289,19 @@ async function handleClearData(requestId) {
  * @returns {Promise<Object>} Response
  */
 async function handleExportData(requestId) {
-    try {
-        const data = await stateManager.getDBManager().exportData();
+  try {
+    const data = await stateManager.getDBManager().exportData();
 
-        return {
-            type: MESSAGE_TYPES.RESPONSE,
-            payload: data,
-            requestId
-        };
-    } catch (error) {
-        return {
-            type: MESSAGE_TYPES.ERROR,
-            error: handleError(error, 'handleExportData'),
-            requestId
-        };
-    }
+    return {
+      type: MESSAGE_TYPES.RESPONSE,
+      payload: data,
+      requestId,
+    };
+  } catch (error) {
+    return {
+      type: MESSAGE_TYPES.ERROR,
+      error: handleError(error, "handleExportData"),
+      requestId,
+    };
+  }
 }
