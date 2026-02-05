@@ -21,20 +21,20 @@ body {
 }
 
 .container {
-  padding: 16px;
+  padding: 12px;
 }
 
 /* ===== Header ===== */
 header {
-  margin-bottom: 14px;
-  padding-bottom: 14px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .logo svg {
@@ -59,17 +59,17 @@ header {
 section {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  padding: 14px;
-  margin-bottom: 10px;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 8px;
   backdrop-filter: blur(10px);
 }
 
 .section-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 6px;
+  margin-bottom: 10px;
 }
 
 .section-header svg {
@@ -116,17 +116,17 @@ section {
 .ai-card-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
+  gap: 10px;
+  padding: 12px 14px;
   background: rgba(16, 185, 129, 0.1);
   border-bottom: 1px solid rgba(16, 185, 129, 0.15);
 }
 
 .ai-icon {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,19 +155,19 @@ section {
 }
 
 .ai-card-body {
-  padding: 14px 16px;
+  padding: 12px 14px;
 }
 
 .ai-description {
-  font-size: 13px;
+  font-size: 12px;
   color: #9ca3af;
-  margin-bottom: 12px;
-  line-height: 1.6;
+  margin-bottom: 10px;
+  line-height: 1.5;
 }
 
 .ai-features {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
 }
 
@@ -236,8 +236,8 @@ section {
 /* ===== Upload Area ===== */
 .upload-area {
   border: 2px dashed rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding: 20px 14px;
+  border-radius: 8px;
+  padding: 14px 12px;
   text-align: center;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -257,7 +257,7 @@ section {
 
 .upload-content svg {
   color: #4b5563;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .upload-text {
@@ -288,18 +288,18 @@ section {
 }
 
 .file-name {
-  margin-top: 10px;
-  font-size: 12px;
+  margin-top: 8px;
+  font-size: 11px;
   color: #6b7280;
   text-align: center;
 }
 
 /* ===== Progress ===== */
 .progress {
-  margin-top: 14px;
-  padding: 14px;
+  margin-top: 10px;
+  padding: 10px;
   background: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -324,18 +324,18 @@ section {
 }
 
 .progress-text {
-  margin-top: 10px;
+  margin-top: 8px;
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
   color: #6b7280;
 }
 
 /* ===== Result Messages ===== */
 .result {
-  margin-top: 14px;
-  padding: 14px;
-  border-radius: 10px;
-  font-size: 13px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 12px;
   text-align: center;
   font-weight: 500;
 }
@@ -356,14 +356,14 @@ section {
 .stats-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 
 .stat-card {
   background: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  padding: 14px 12px;
+  border-radius: 8px;
+  padding: 10px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.06);
   transition: all 0.2s;
@@ -376,11 +376,11 @@ section {
 
 .stat-value {
   display: block;
-  font-size: 28px;
-  font-weight: 800;
+  font-size: 24px;
+  font-weight: 700;
   color: #ffffff;
   line-height: 1.1;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
 }
 
 .stat-label {
@@ -392,17 +392,17 @@ section {
 }
 
 .last-import {
-  font-size: 11px;
+  font-size: 10px;
   color: #4b5563;
   text-align: center;
-  padding-top: 10px;
+  padding-top: 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* ===== Actions ===== */
 .actions-section {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   background: transparent;
   border: none;
   padding: 0;
@@ -413,11 +413,11 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 10px 14px;
-  font-size: 12px;
+  gap: 5px;
+  padding: 8px 12px;
+  font-size: 11px;
   font-weight: 600;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -454,8 +454,8 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding-top: 12px;
+  gap: 6px;
+  padding-top: 8px;
   font-size: 10px;
   color: #4b5563;
 }
