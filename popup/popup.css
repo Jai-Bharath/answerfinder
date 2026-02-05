@@ -17,18 +17,18 @@ body {
 }
 
 .container {
-  padding: 16px;
+  padding: 12px;
 }
 
 /* ===== Header ===== */
 header {
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .logo svg {
@@ -52,16 +52,16 @@ header {
 section {
   background: #fff;
   border: 1px solid #e5e5e5;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 12px;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 8px;
 }
 
 .section-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 6px;
+  margin-bottom: 10px;
 }
 
 .section-header svg {
@@ -80,7 +80,7 @@ section {
 .ai-card {
   background: #fff;
   border: 2px solid #1a1a1a;
-  border-radius: 12px;
+  border-radius: 10px;
   padding: 0;
   overflow: hidden;
 }
@@ -88,17 +88,17 @@ section {
 .ai-card-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 16px;
+  gap: 10px;
+  padding: 12px;
   background: #1a1a1a;
   color: #fff;
 }
 
 .ai-icon {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   background: rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -200,8 +200,8 @@ section {
 /* ===== Upload Area ===== */
 .upload-area {
   border: 2px dashed #ddd;
-  border-radius: 10px;
-  padding: 24px 16px;
+  border-radius: 8px;
+  padding: 16px 12px;
   text-align: center;
   transition: all 0.2s;
   cursor: pointer;
@@ -313,20 +313,20 @@ section {
 .stats-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 
 .stat-card {
   background: #fafafa;
-  border-radius: 8px;
-  padding: 14px;
+  border-radius: 6px;
+  padding: 10px;
   text-align: center;
 }
 
 .stat-value {
   display: block;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
   color: #1a1a1a;
   line-height: 1.2;
@@ -362,10 +362,10 @@ section {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 10px 16px;
-  font-size: 13px;
+  padding: 8px 12px;
+  font-size: 12px;
   font-weight: 500;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   transition: all 0.2s;
 }
@@ -401,8 +401,8 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding-top: 12px;
-  font-size: 11px;
+  padding-top: 8px;
+  font-size: 10px;
   color: #999;
 }
 
