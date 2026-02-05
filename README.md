@@ -125,12 +125,12 @@ Display result with confidence score
 
 ### Matching Examples
 
-| Your Question | Finds Database Entry | Method |
-|--------------|---------------------|--------|
-| "What is the capital of France?" | Exact same | Exact |
-| "capital of France" | "What is the capital of France?" | Keyword |
-| "What is teh capital of Frence?" | "What is the capital of France?" | Fuzzy |
-| "France capital" | "What is the capital of France?" | Partial |
+| Your Question                    | Finds Database Entry             | Method  |
+| -------------------------------- | -------------------------------- | ------- |
+| "What is the capital of France?" | Exact same                       | Exact   |
+| "capital of France"              | "What is the capital of France?" | Keyword |
+| "What is teh capital of Frence?" | "What is the capital of France?" | Fuzzy   |
+| "France capital"                 | "What is the capital of France?" | Partial |
 
 ---
 
@@ -154,11 +154,13 @@ Done! Uses default secure proxy - no API key needed.
 ### When to Enable AI
 
 ✅ **Enable if:**
+
 - You want complete coverage for any question
 - Your database is small or incomplete
 - You need answers for unexpected questions
 
 ❌ **Keep disabled if:**
+
 - You only want answers from your curated database
 - You want 100% control over content
 - You prefer no external API calls
@@ -209,22 +211,27 @@ Alexander Fleming in 1928
 Click the extension icon to access:
 
 ### Enable AI Answering
+
 - Toggle AI fallback for questions not in database
 
 ### Export Data
+
 - Download your Q&A database as `answerfinder-export-[timestamp].json`
 - Use for backups or sharing
 
 ### Clear All Data
+
 - Remove all questions and cache
 - ⚠️ **Cannot be undone!** Export first if needed
 
 ### Statistics Display
+
 - Total questions loaded
 - Cached search results
 - Last import timestamp
 
 ### Advanced Setup
+
 - Custom AI backend setup instructions in [USAGE.md](USAGE.md)
 
 ---
@@ -232,15 +239,19 @@ Click the extension icon to access:
 ## 🎯 Use Cases
 
 ### 📚 Students
+
 Upload flashcards → Study online → Get instant answers while reading
 
 ### 🔬 Researchers
+
 Convert paper abstracts to Q&A → Look up terms instantly → AI fills knowledge gaps
 
 ### 💻 Developers
+
 API docs to Q&A format → Quick reference while coding → No context switching
 
 ### 👥 Teams
+
 Company FAQ in JSON → Share with team → Instant access → AI handles edge cases
 
 ---
@@ -248,23 +259,27 @@ Company FAQ in JSON → Share with team → Instant access → AI handles edge c
 ## 🛠️ Troubleshooting
 
 ### Extension Won't Load
+
 - ✅ Enable Developer Mode in `chrome://extensions/`
 - ✅ Select folder containing `manifest.json`
 - ✅ Reload Chrome and try again
 
 ### File Upload Fails
+
 - ✅ **JSON:** Validate at [jsonlint.com](https://jsonlint.com)
 - ✅ **TXT:** Verify blank lines between Q&A pairs
 - ✅ Keep file under 10MB
 - ✅ Ensure UTF-8 encoding
 
 ### No Matches Found
+
 - ✅ Check file uploaded (view Statistics)
 - ✅ Try selecting more/less text
 - ✅ Enable AI as fallback
 - ✅ Export data to verify content
 
 ### AI Not Responding
+
 - ✅ Verify "Enable AI Answering" is checked
 - ✅ Check daily limit (100 queries)
 - ✅ Verify internet connection
@@ -346,7 +361,7 @@ MIT License - See [LICENSE](LICENSE) file
 
 ## Credits
 
-**Built with:** Chrome Extension Manifest V3 • IndexedDB • OpenRouter API • Cloudflare Workers • Google Gemma 2 AI
+**Built with:** Chrome Extension Manifest V3 • IndexedDB • Groq API • Cloudflare Workers • Llama 3.1 70B AI
 
 **Inspired by:** The need for instant access to knowledge while browsing
 
