@@ -33,10 +33,28 @@ chrome.runtime.onInstalled.addListener(() => {
   console.log("[ServiceWorker] Context menu created");
 });
 
+// Check if URL is restricted (cannot inject content scripts)
+function isRestrictedUrl(url) {
+  if (!url) return true;
+  return (
+    url.startsWith("chrome://") ||
+    url.startsWith("chrome-extension://") ||
+    url.startsWith("edge://") ||
+    url.startsWith("about:") ||
+    url.startsWith("https://chrome.google.com/webstore")
+  );
+}
+
 // Handle context menu clicks
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "searchAnswer") {
     const selectedText = info.selectionText;
+
+    // Skip restricted URLs silently
+    if (isRestrictedUrl(tab.url)) {
+      console.log("[ServiceWorker] Skipping restricted URL:", tab.url);
+      return;
+    }
 
     console.log("[ServiceWorker] Context menu clicked", { selectedText });
 
