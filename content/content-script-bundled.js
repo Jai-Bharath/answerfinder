@@ -391,7 +391,7 @@ class OverlayManager {
       medium: "⚠ Medium Confidence",
       low: "⚠ Low Confidence",
       none: "✗ No Match",
-      ai: "🤖 AI-Generated",
+      ai: "AI Generated",
     };
     return badges[level] || "Unknown";
   }
@@ -640,27 +640,35 @@ style.textContent = `
   }
   
   .answerfinder-badge-ai {
-    background: rgba(139, 92, 246, 0.15);
-    color: #a78bfa;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(167, 139, 250, 0.15) 100%);
+    color: #c4b5fd;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 9px;
+    padding: 5px 10px;
   }
   
   .answerfinder-reasoning {
     margin-top: 10px;
-    padding: 8px 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    font-size: 11px;
-    color: #9ca3af;
-    background: rgba(255, 255, 255, 0.02);
+    padding: 10px 12px;
+    border-top: 1px solid rgba(139, 92, 246, 0.1);
+    font-size: 12px;
+    color: #a1a1aa;
+    background: rgba(139, 92, 246, 0.03);
     border-radius: 6px;
+    border-left: 2px solid rgba(139, 92, 246, 0.4);
   }
 
   .answerfinder-reasoning strong {
     color: #a78bfa;
     display: block;
-    margin-bottom: 4px;
-    font-size: 10px;
+    margin-bottom: 6px;
+    font-size: 9px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
+    font-weight: 600;
   }
 `;
 document.head.appendChild(style);
