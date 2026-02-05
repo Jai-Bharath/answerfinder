@@ -7,6 +7,7 @@
 // DOM elements
 const fileInput = document.getElementById("fileInput");
 const uploadBtn = document.getElementById("uploadBtn");
+const dropZone = document.getElementById("dropZone");
 const fileName = document.getElementById("fileName");
 const uploadProgress = document.getElementById("uploadProgress");
 const uploadResult = document.getElementById("uploadResult");
@@ -49,8 +50,26 @@ async function init() {
 }
 
 function setupEventListeners() {
-  uploadBtn.addEventListener("click", () => fileInput.click());
+  // Click anywhere on upload area to open file picker
+  dropZone.addEventListener("click", (e) => {
+    // Prevent double trigger if clicking on the button
+    if (e.target !== uploadBtn) {
+      fileInput.click();
+    }
+  });
+
+  uploadBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    fileInput.click();
+  });
+
   fileInput.addEventListener("change", handleFileUpload);
+
+  // Drag and drop events
+  dropZone.addEventListener("dragenter", handleDragEnter);
+  dropZone.addEventListener("dragover", handleDragOver);
+  dropZone.addEventListener("dragleave", handleDragLeave);
+  dropZone.addEventListener("drop", handleDrop);
 
   aiEnabledEl.addEventListener("change", saveSettings);
 
@@ -58,10 +77,50 @@ function setupEventListeners() {
   clearBtn.addEventListener("click", handleClear);
 }
 
+function handleDragEnter(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  dropZone.classList.add("drag-over");
+}
+
+function handleDragOver(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  dropZone.classList.add("drag-over");
+}
+
+function handleDragLeave(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  dropZone.classList.remove("drag-over");
+}
+
+function handleDrop(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  dropZone.classList.remove("drag-over");
+
+  const files = e.dataTransfer.files;
+  if (files.length > 0) {
+    const file = files[0];
+    // Check file type
+    if (file.name.endsWith(".json") || file.name.endsWith(".txt")) {
+      processFile(file);
+    } else {
+      showResult("error", "Please upload a JSON or TXT file");
+    }
+  }
+}
+
 async function handleFileUpload(event) {
   const file = event.target.files[0];
   if (!file) return;
+  processFile(file);
+  // Reset file input
+  fileInput.value = "";
+}
 
+async function processFile(file) {
   fileName.textContent = file.name;
   uploadProgress.hidden = false;
   uploadResult.hidden = true;
@@ -95,9 +154,7 @@ async function handleFileUpload(event) {
     uploadProgress.hidden = true;
     showResult("error", error.message || "Failed to upload file");
   }
-
-  // Reset file input
-  fileInput.value = "";
+}
 }
 
 function readFile(file) {
