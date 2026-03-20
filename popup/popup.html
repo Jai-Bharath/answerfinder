@@ -31,6 +31,36 @@
         </div>
       </header>
 
+      <!-- Search Input Section -->
+      <section class="search-section">
+        <div class="search-input-wrapper">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" class="search-input" placeholder="Ask Jarvis anything..." autocomplete="off" />
+          <button id="searchBtn" class="search-btn" title="Search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+        
+        <div id="searchProcessing" class="search-processing hidden">
+          <div class="spinner"></div>
+          <span>Processing query...</span>
+        </div>
+
+        <div id="searchResultArea" class="search-result-area hidden">
+          <div class="search-result-header">
+            <span id="searchResultBadge" class="answerfinder-badge"></span>
+            <button id="searchVoiceBtn" class="voice-btn" title="Toggle Voice">🔊</button>
+          </div>
+          <div id="searchResultAnswer" class="search-result-answer"></div>
+        </div>
+      </section>
+
       <!-- AI Feature Card - Prominent -->
       <section class="ai-card">
         <div class="ai-card-header">

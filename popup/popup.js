@@ -19,6 +19,17 @@ const exportBtn = document.getElementById("exportBtn");
 const clearBtn = document.getElementById("clearBtn");
 const aiEnabledEl = document.getElementById("aiEnabled");
 
+// Search elements
+const searchInput = document.getElementById("searchInput");
+const searchBtn = document.getElementById("searchBtn");
+const searchProcessing = document.getElementById("searchProcessing");
+const searchResultArea = document.getElementById("searchResultArea");
+const searchResultBadge = document.getElementById("searchResultBadge");
+const searchResultAnswer = document.getElementById("searchResultAnswer");
+const searchVoiceBtn = document.getElementById("searchVoiceBtn");
+
+let activeUtterance = null;
+
 // Initialize
 init();
 
@@ -75,6 +86,135 @@ function setupEventListeners() {
 
   exportBtn.addEventListener("click", handleExport);
   clearBtn.addEventListener("click", handleClear);
+
+  // Search logic
+  searchBtn.addEventListener("click", handleSearch);
+  searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") handleSearch();
+  });
+
+  if (searchVoiceBtn) {
+    searchVoiceBtn.addEventListener("click", () => {
+      const text = searchResultAnswer.textContent;
+      if (window.speechSynthesis && window.speechSynthesis.speaking) {
+        stopSpeaking();
+      } else if (text) {
+        speak(text);
+      }
+    });
+  }
+}
+
+async function handleSearch() {
+  const query = searchInput.value.trim();
+  if (!query) return;
+
+  // UI state
+  searchProcessing.classList.remove("hidden");
+  searchResultArea.classList.add("hidden");
+  searchResultAnswer.textContent = "";
+  stopSpeaking();
+
+  try {
+    const response = await chrome.runtime.sendMessage({
+      type: "QUERY_ANSWER",
+      payload: { query },
+      requestId: Date.now().toString(),
+    });
+
+    searchProcessing.classList.add("hidden");
+
+    if (response.type === "RESPONSE") {
+      const result = response.payload;
+      searchResultArea.classList.remove("hidden");
+
+      if (result.success && result.match) {
+        const { matchType, confidence, question } = result.match;
+        const answerText = question.original.answer || "";
+
+        // Setup badge
+        searchResultBadge.className = "answerfinder-badge " + getBadgeClass(confidence, matchType);
+        searchResultBadge.textContent = getBadgeText(confidence, matchType);
+
+        // Show answer
+        searchResultAnswer.textContent = answerText;
+
+        // Auto-play voice if AI
+        if (matchType === "ai" && aiEnabledEl.checked) {
+          speak("Sir, " + answerText);
+        }
+      } else {
+        searchResultBadge.className = "answerfinder-badge none";
+        searchResultBadge.textContent = "No Match";
+        searchResultAnswer.textContent = result.message || "No answer found for your query.";
+      }
+    } else {
+      searchProcessing.classList.add("hidden");
+      searchResultArea.classList.remove("hidden");
+      searchResultBadge.className = "answerfinder-badge low";
+      searchResultBadge.textContent = "Error";
+      searchResultAnswer.textContent = response.error?.message || "An error occurred";
+    }
+  } catch (err) {
+    searchProcessing.classList.add("hidden");
+    searchResultArea.classList.remove("hidden");
+    searchResultBadge.className = "answerfinder-badge low";
+    searchResultBadge.textContent = "Error";
+    searchResultAnswer.textContent = "Failed to communicate with service.";
+  }
+}
+
+function getBadgeClass(confidence, matchType) {
+  if (matchType === "ai") return "ai";
+  if (confidence >= 0.85) return "high";
+  if (confidence >= 0.6) return "medium";
+  if (confidence >= 0.3) return "low";
+  return "none";
+}
+
+function getBadgeText(confidence, matchType) {
+  if (matchType === "ai") return "AI Generated";
+  if (confidence >= 0.85) return "High Confidence";
+  if (confidence >= 0.6) return "Medium Confidence";
+  if (confidence >= 0.3) return "Low Confidence";
+  return "No Match";
+}
+
+function speak(text) {
+  if (!window.speechSynthesis) return;
+  stopSpeaking();
+  const cleanText = text.replace(/[#*\`_~]/g, "").trim();
+  if (!cleanText) return;
+
+  const utterance = new SpeechSynthesisUtterance(cleanText);
+  let voices = window.speechSynthesis.getVoices();
+  const setVoice = () => {
+    voices = window.speechSynthesis.getVoices();
+    const jarvisVoice = voices.find(v =>
+      (v.name.includes("Google UK English Male")) ||
+      (v.lang === "en-GB" && v.name.includes("Male")) ||
+      (v.name.includes("Daniel"))
+    ) || voices.find(v => v.lang.startsWith("en"));
+
+    if (jarvisVoice) utterance.voice = jarvisVoice;
+    utterance.rate = 1.05;
+    utterance.pitch = 0.8;
+    window.speechSynthesis.speak(utterance);
+    activeUtterance = utterance;
+  };
+
+  if (voices.length === 0) {
+    window.speechSynthesis.onvoiceschanged = setVoice;
+  } else {
+    setVoice();
+  }
+}
+
+function stopSpeaking() {
+  if (window.speechSynthesis) {
+    window.speechSynthesis.cancel();
+    activeUtterance = null;
+  }
 }
 
 function handleDragEnter(e) {
