@@ -81,7 +81,6 @@ class OverlayManager {
     this.autoHideTimer = null;
     this.autoHideRemaining = 5000; // 5 seconds
     this.autoHideStartTime = 0;
-    this.currentUtterance = null; // TTS keeping track
 
     // Bind methods
     this.boundHandleOutsideClick = this.handleOutsideClick.bind(this);
@@ -199,11 +198,6 @@ class OverlayManager {
 
     // Add event listeners
     this.setupEventListeners();
-
-    // Auto-play TTS if AI match
-    if (result.success && result.match && result.match.matchType === "ai") {
-      this.speak("Sir, " + result.match.question.original.answer);
-    }
   }
 
   /**
@@ -225,23 +219,21 @@ class OverlayManager {
           <span class="answerfinder-badge answerfinder-badge-${confidenceLevel}">
             ${this.getConfidenceBadgeText(confidenceLevel)}
           </span>
-          <div style="display: flex; gap: 8px; align-items: center;">
-            ${matchType === "ai" ? `<button class="answerfinder-voice-btn" title="Toggle Voice">🔊</button>` : ''}
-            <button class="answerfinder-close" title="Close">&times;</button>
-          </div>
+          <button class="answerfinder-close" title="Close">&times;</button>
         </div>
         <div class="answerfinder-content">
           <div class="answerfinder-answer">
             ${this.escapeHtml(question.original.answer)}
           </div>
-          ${matchType === "ai" && explanation
-          ? `
+          ${
+            matchType === "ai" && explanation
+              ? `
           <div class="answerfinder-reasoning">
             <strong>Reasoning:</strong>
             ${this.escapeHtml(explanation)}
           </div>
           `
-          : `
+              : `
           <div class="answerfinder-meta">
             <small>${explanation}</small>
           </div>
@@ -249,7 +241,7 @@ class OverlayManager {
             <small><strong>Matched question:</strong> ${this.escapeHtml(question.original.question)}</small>
           </div>
           `
-        }
+          }
         </div>
         <div class="answerfinder-footer">
           <button class="answerfinder-copy" title="Copy answer">Copy</button>
@@ -297,19 +289,6 @@ class OverlayManager {
     const closeBtn = this.overlay.querySelector(".answerfinder-close");
     if (closeBtn) {
       closeBtn.addEventListener("click", () => this.hideOverlay());
-    }
-
-    // Voice button
-    const voiceBtn = this.overlay.querySelector(".answerfinder-voice-btn");
-    if (voiceBtn) {
-      voiceBtn.addEventListener("click", () => {
-        if (window.speechSynthesis && window.speechSynthesis.speaking) {
-          this.stopSpeaking();
-        } else {
-          const answerText = this.overlay.querySelector(".answerfinder-answer").textContent;
-          this.speak(answerText);
-        }
-      });
     }
 
     // Copy button
@@ -377,7 +356,6 @@ class OverlayManager {
    */
   hideOverlay() {
     this.stopAutoHideTimer();
-    this.stopSpeaking();
     if (this.overlay) {
       this.overlay.remove();
       this.overlay = null;
@@ -386,57 +364,6 @@ class OverlayManager {
       // Remove event listeners
       document.removeEventListener("click", this.boundHandleOutsideClick);
       document.removeEventListener("keydown", this.boundHandleEscKey);
-    }
-  }
-
-  /**
-   * Speak text using TTS (Jarvis voice)
-   * @param {string} text - Text to speak
-   */
-  speak(text) {
-    if (!window.speechSynthesis) return;
-    this.stopSpeaking();
-
-    // Force lowercase matching for text cleanup to sound better
-    const cleanText = text.replace(/[#*`_~]/g, "").trim();
-    if (!cleanText) return;
-
-    const utterance = new SpeechSynthesisUtterance(cleanText);
-
-    // Wait for voices to load if not ready
-    let voices = window.speechSynthesis.getVoices();
-    const setVoice = () => {
-      voices = window.speechSynthesis.getVoices();
-      // Try finding a British Male voice (closest to Jarvis out-of-the-box browser TTS)
-      const jarvisVoice = voices.find(v =>
-        (v.name.includes("Google UK English Male")) ||
-        (v.lang === "en-GB" && v.name.includes("Male")) ||
-        (v.name.includes("Daniel"))
-      ) || voices.find(v => v.lang.startsWith("en"));
-
-      if (jarvisVoice) {
-        utterance.voice = jarvisVoice;
-      }
-      utterance.rate = 1.05;
-      utterance.pitch = 0.8; // Deeper pitch
-      window.speechSynthesis.speak(utterance);
-      this.currentUtterance = utterance;
-    };
-
-    if (voices.length === 0) {
-      window.speechSynthesis.onvoiceschanged = setVoice;
-    } else {
-      setVoice();
-    }
-  }
-
-  /**
-   * Stop speaking
-   */
-  stopSpeaking() {
-    if (window.speechSynthesis) {
-      window.speechSynthesis.cancel();
-      this.currentUtterance = null;
     }
   }
 
@@ -559,181 +486,152 @@ const style = document.createElement("style");
 style.textContent = `
   .answerfinder-overlay {
     position: fixed;
-    top: 5vmin;
-    right: 5vmin;
+    top: 16px;
+    right: 16px;
     z-index: 2147483647;
-    background: rgba(18, 18, 20, 0.75);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
-    width: clamp(280px, 90vw, 360px);
-    max-height: 85vh;
+    background: #0c0c0f;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    width: 320px;
+    max-height: 80vh;
     overflow-y: auto;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
-    color: #f4f4f5;
-    animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #e4e4e7;
+    animation: slideInRight 0.25s ease-out;
   }
 
   @keyframes slideInRight {
-    from { transform: translateX(100px) scale(0.95); opacity: 0; }
-    to { transform: translateX(0) scale(1); opacity: 1; }
-  }
-  
-  .answerfinder-overlay::-webkit-scrollbar {
-    width: 6px;
-  }
-  .answerfinder-overlay::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.1);
-    border-radius: 10px;
+    from { transform: translateX(120%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
   }
   
   .answerfinder-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 18px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    background: rgba(0, 0, 0, 0.1);
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.02);
     position: sticky;
     top: 0;
-    z-index: 10;
   }
   
   .answerfinder-badge {
     padding: 4px 10px;
-    border-radius: 100px;
+    border-radius: 4px;
     font-size: 11px;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
   }
   
   .answerfinder-badge-high {
-    background: rgba(52, 211, 153, 0.1);
-    color: #34d399;
-    border: 1px solid rgba(52, 211, 153, 0.2);
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
   }
   
   .answerfinder-badge-medium {
-    background: rgba(251, 191, 36, 0.1);
+    background: rgba(234, 179, 8, 0.15);
     color: #fbbf24;
-    border: 1px solid rgba(251, 191, 36, 0.2);
   }
   
   .answerfinder-badge-low {
-    background: rgba(248, 113, 113, 0.1);
+    background: rgba(239, 68, 68, 0.15);
     color: #f87171;
-    border: 1px solid rgba(248, 113, 113, 0.2);
   }
   
   .answerfinder-badge-none {
-    background: rgba(161, 161, 170, 0.1);
-    color: #a1a1aa;
-    border: 1px solid rgba(161, 161, 170, 0.2);
-  }
-  
-  .answerfinder-close, .answerfinder-voice-btn {
     background: rgba(255, 255, 255, 0.05);
-    border: none;
-    cursor: pointer;
-    color: #a1a1aa;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #6b7280;
   }
   
-  .answerfinder-close:hover, .answerfinder-voice-btn:hover {
+  .answerfinder-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #6b7280;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  
+  .answerfinder-close:hover {
     color: #ffffff;
-    background: rgba(255, 255, 255, 0.15);
-    transform: scale(1.05);
   }
   
   .answerfinder-content {
-    padding: 18px;
+    padding: 12px;
   }
   
   .answerfinder-answer {
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     white-space: pre-wrap;
     word-wrap: break-word;
-    font-size: 15px;
+    font-size: 14px;
     color: #ffffff;
     font-weight: 500;
-    letter-spacing: -0.01em;
   }
   
   .answerfinder-meta {
-    margin-bottom: 12px;
-    color: #a1a1aa;
+    margin-bottom: 10px;
+    color: #6b7280;
     font-style: italic;
-    font-size: 12px;
+    font-size: 11px;
   }
   
   .answerfinder-question {
-    padding: 10px 14px;
-    background: rgba(255, 255, 255, 0.04);
-    border-radius: 8px;
-    color: #d4d4d8;
-    border-left: 3px solid #8b5cf6;
-    font-size: 13px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+    padding: 8px 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+    color: #9ca3af;
+    border-left: 2px solid rgba(139, 92, 246, 0.5);
+    font-size: 12px;
   }
   
   .answerfinder-message {
-    color: #a1a1aa;
+    color: #6b7280;
     text-align: center;
-    padding: 24px 0;
-    font-size: 14px;
-    font-weight: 500;
+    padding: 16px 0;
+    font-size: 12px;
   }
   
   .answerfinder-footer {
-    padding: 12px 18px;
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 10px 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
     text-align: right;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.02);
     position: sticky;
     bottom: 0;
-    z-index: 10;
   }
   
   .answerfinder-copy {
-    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+    background: #7c3aed;
     color: white;
     border: none;
-    padding: 8px 18px;
-    border-radius: 8px;
+    padding: 6px 14px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 600;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+    transition: background 0.2s;
   }
   
   .answerfinder-copy:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.4);
-    filter: brightness(1.1);
+    background: #6d28d9;
   }
 
   .answerfinder-progress-bar {
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+    height: 2px;
+    background: #7c3aed;
     width: 100%;
     transform-origin: left;
-    box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
   }
 
   @keyframes answerfinder-progress {
@@ -742,35 +640,34 @@ style.textContent = `
   }
   
   .answerfinder-badge-ai {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(167, 139, 250, 0.15) 100%);
     color: #c4b5fd;
-    border: 1px solid rgba(139, 92, 246, 0.4);
+    border: 1px solid rgba(139, 92, 246, 0.3);
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    font-size: 10px;
-    padding: 4px 12px;
-    box-shadow: 0 0 16px rgba(139, 92, 246, 0.15);
+    font-size: 9px;
+    padding: 5px 10px;
   }
   
   .answerfinder-reasoning {
-    margin-top: 14px;
-    padding: 14px;
-    font-size: 13px;
-    color: #d4d4d8;
-    background: rgba(139, 92, 246, 0.05);
-    border-radius: 10px;
-    border: 1px solid rgba(139, 92, 246, 0.1);
-    line-height: 1.5;
+    margin-top: 10px;
+    padding: 10px 12px;
+    border-top: 1px solid rgba(139, 92, 246, 0.1);
+    font-size: 12px;
+    color: #a1a1aa;
+    background: rgba(139, 92, 246, 0.03);
+    border-radius: 6px;
+    border-left: 2px solid rgba(139, 92, 246, 0.4);
   }
 
   .answerfinder-reasoning strong {
     color: #a78bfa;
     display: block;
-    margin-bottom: 8px;
-    font-size: 11px;
+    margin-bottom: 6px;
+    font-size: 9px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
     font-weight: 600;
   }
 `;

@@ -44,15 +44,7 @@ export default {
           },
           body: JSON.stringify({
             model: "llama-3.3-70b-versatile",
-            messages: [
-              {
-                role: "system",
-                content: "You are Jarvis, a highly intelligent, polite, and concise AI assistant. You answer queries precisely and concisely, adhering strictly to the user's constraints."
-              },
-              { role: "user", content: inputs }
-            ],
-            max_tokens: 1024,
-            temperature: 0.5
+            messages: [{ role: "user", content: inputs }],
           }),
         },
       );
